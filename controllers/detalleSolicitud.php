@@ -11,6 +11,7 @@ if(!isset($_GET['id'])) die('No existe ID de solicitud');
 $s = new Solicitudes();
 $v = new DatosSolicitud();
 
+if(!$s->verificarIDSolicitud($_GET['id'])) die('ID de solicitud inválido');
 $v->solicitud = $s->getSolicitudByID($_GET['id']);
 
 $v->menus = $s->getMenusSolicitud($_GET['id']);

@@ -127,7 +127,7 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT m.nombre , m.precio, me.cantidad, (m.precio * me.cantidad) as total FROM solicitudes sol
+        $this->db->query("SELECT m.id_menu, m.nombre , m.precio, me.cantidad, (m.precio * me.cantidad) as total FROM solicitudes sol
                         LEFT JOIN menus_evento me on me.id_solicitud = sol.id_solicitud
                         LEFT JOIN menus m on m.id_menu = me.id_menu
                         WHERE sol.id_solicitud = $id_solicitud
@@ -196,6 +196,19 @@ class Solicitudes extends Model{
         ");
 
         return $this->db->numRows($this->db->fetchAll());
+    }
+
+    public function eliminarMenuSolicitud($id_solicitud, $id_menu){
+
+        if(!ctype_digit("$id_menu")) throw new ValidationException('ID de solicitud no es un número');
+        if($id_menu < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+
+        $this->db->query("DELETE from menus_evento
+                        WHERE id_solicitud = $id_solicitud
+                        AND id_menu = $id_menu
+                        LIMIT 1
+        ");
+
     }
 
     public function saveServicioSolicitud($id_solicitud, $id_servicio){

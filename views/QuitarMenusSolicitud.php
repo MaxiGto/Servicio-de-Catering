@@ -3,6 +3,7 @@
 class QuitarMenusSolicitud extends View{
 
     public $idSolicitud;
-    public $menus;   
+    public $menus;
+    public $minimo = false;
 
 }

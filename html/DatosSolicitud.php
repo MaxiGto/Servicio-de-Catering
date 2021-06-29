@@ -31,9 +31,14 @@
 
     <p>Comentario: <?=$this->solicitud['comentario']?></p>
 
+    <div>
     <a href="agregar-menus-<?=$this->solicitud['id_solicitud']?>">Agregar Menus</a>
     <a href="quitar-menus-<?=$this->solicitud['id_solicitud']?>">Quitar Menus</a>
+    </div>
+
+    <div>
     <a href="agregar-servicios-<?=$this->solicitud['id_solicitud']?>">Agregar Servicios</a>
     <a href="quitar-servicios-<?=$this->solicitud['id_solicitud']?>">Quitar Servicios</a>
+    </div>
 </body>
 </html>
