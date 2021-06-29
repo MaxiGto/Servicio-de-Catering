@@ -1,0 +1,52 @@
+html{
+    background-image: url(../img/login-background.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.contenedor-form{
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.login-input{
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.56);
+    color: black;
+    height: 35px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.login-input:focus{
+    outline: none;
+}
+
+.btn-login{
+    background-color:rgb(70, 181, 255);
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    height: 35px;
+    margin-top: 10px;
+    width: 100%;
+    
+    transition: background-color .3s ease;
+}
+
+.btn-login:hover{
+    background-color: rgb(27, 141, 216);
+}

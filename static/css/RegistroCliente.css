@@ -1,0 +1,45 @@
+html{
+    background-image: url(../img/register-background.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.contenedor-form{
+    background-color: rgba(255 , 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.contenedor-form label{
+    font-size: 18px;
+}
+
+.input-registro{
+    border-radius: 5px;
+    display: block;
+    height: 30px;
+    margin-bottom: 10px;
+    width: 95%;
+    color: black;
+}
+
+.btn{
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+    width: 100%;
+}
