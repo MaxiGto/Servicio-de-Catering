@@ -9,7 +9,6 @@
 <body>
     <h1>Servicios solicitados</h1>
 
-    <h3>Servicios solicitados</h3>
     <?php if($this->tieneServicios){
         foreach($this->servicios as $s) { ?>
         <p><?=$s['nombre']?></p>

@@ -9,7 +9,6 @@
 <body>
     <h1>Menús solicitados</h1>
 
-    <h3>Menús solicitados</h3>
     <?php foreach($this->menus as $m) { ?>
     <p><?=$m['cantidad']?> <?=$m['nombre']?></p>
     <?php } ?>

@@ -14,7 +14,7 @@ $v = new QuitarMenusSolicitud();
 if(!$s->verificarIDSolicitud($_GET['id'])) die('ID de solicitud inválido');
 $v->idSolicitud = $_GET['id'];
 
-if(count($_POST) > 0){
+if(isset($_POST['menu'])){
     $s->eliminarMenuSolicitud($_GET['id'], $_POST['menu']);
     if($s->getCantidadTiposMenusSolicitud($_GET['id']) < 2) $v->minimo = true;
     $v->menus = $s->getMenusSolicitud($_GET['id']);

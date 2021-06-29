@@ -15,3 +15,4 @@ RewriteRule ^solicitud-([0-9]+)$ controllers/detalleSolicitud.php?id=$1
 RewriteRule ^agregar-menus-([0-9]+)$ controllers/nuevoMenuSolicitud.php?id=$1
 RewriteRule ^agregar-servicios-([0-9]+)$ controllers/nuevoServicioSolicitud.php?id=$1
 RewriteRule ^quitar-menus-([0-9]+)$ controllers/borrarMenuSolicitud.php?id=$1
+RewriteRule ^quitar-servicios-([0-9]+)$ controllers/borrarServicioSolicitud.php?id=$1

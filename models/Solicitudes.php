@@ -200,8 +200,11 @@ class Solicitudes extends Model{
 
     public function eliminarMenuSolicitud($id_solicitud, $id_menu){
 
-        if(!ctype_digit("$id_menu")) throw new ValidationException('ID de solicitud no es un número');
-        if($id_menu < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+        if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
+        if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+
+        if(!ctype_digit("$id_menu")) throw new ValidationException('ID de menú no es un número');
+        if($id_menu < 1) throw new ValidationException('ID de menú no puede ser menor que 1');
 
         $this->db->query("DELETE from menus_evento
                         WHERE id_solicitud = $id_solicitud
@@ -256,7 +259,7 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT s.nombre , s.precio, se.cantidad, (s.precio * se.cantidad) as total FROM solicitudes sol
+        $this->db->query("SELECT s.id_servicio, s.nombre , s.precio, se.cantidad, (s.precio * se.cantidad) as total FROM solicitudes sol
                         LEFT JOIN servicios_evento se on se.id_solicitud = sol.id_solicitud
                         LEFT JOIN servicios_adicionales s on s.id_servicio = se.id_servicio
                         WHERE sol.id_solicitud = $id_solicitud
@@ -312,6 +315,36 @@ class Solicitudes extends Model{
         if($this->db->numRows() > 0) return true;
 
         return false;
+    }
+
+    public function getCantidadTiposServiciosSolicitud($id_solicitud){
+
+        if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
+        if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+
+        $this->db->query("SELECT * from servicios_evento
+        WHERE id_solicitud = $id_solicitud
+        ");
+
+        return $this->db->numRows($this->db->fetchAll());
+
+    }
+
+
+    public function eliminarServicioSolicitud($id_solicitud, $id_servicio){
+
+        if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
+        if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+
+        if(!ctype_digit("$id_servicio")) throw new ValidationException('ID de servicio no es un número');
+        if($id_servicio < 1) throw new ValidationException('ID de servicio no puede ser menor que 1');
+
+        $this->db->query("DELETE from servicios_evento
+                        WHERE id_solicitud = $id_solicitud
+                        AND id_servicio = $id_servicio
+                        LIMIT 1
+        ");
+
     }
 
 }
