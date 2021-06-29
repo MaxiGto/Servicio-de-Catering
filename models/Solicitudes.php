@@ -78,6 +78,8 @@ class Solicitudes extends Model{
     public function getSolicitudesPendientes(){
 
         $this->db->query("SELECT * FROM solicitudes
+                        WHERE id_solicitud NOT IN
+                        (SELECT id_solicitud FROM presupuestos)
         ");
 
         return $this->db->fetchAll();
@@ -87,6 +89,8 @@ class Solicitudes extends Model{
     public function getCantidadSolicitudesPendientes(){
 
         $this->db->query("SELECT * FROM solicitudes
+                        WHERE id_solicitud NOT IN
+                        (SELECT id_solicitud FROM presupuestos)
         ");
 
         return $this->db->numRows();

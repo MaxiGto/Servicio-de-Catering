@@ -40,5 +40,6 @@
     <a href="agregar-servicios-<?=$this->solicitud['id_solicitud']?>">Agregar Servicios</a>
     <a href="quitar-servicios-<?=$this->solicitud['id_solicitud']?>">Quitar Servicios</a>
     </div>
+    <a href="confirmar-presupuesto-<?=$this->solicitud['id_solicitud']?>">Confirmar y enviar presupuesto</a>
 </body>
 </html>
