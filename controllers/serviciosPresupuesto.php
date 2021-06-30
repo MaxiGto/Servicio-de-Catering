@@ -25,8 +25,6 @@ if(count($_POST) > 0 ){
         $v->agregado = true;
     } 
 
-    var_dump($_SESSION['servicios']);
-
     $s = new Servicios();
     
     $v->servicios = $s->getTodos();

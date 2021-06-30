@@ -2,13 +2,15 @@
 
 RewriteEngine on
 
+RewriteRule ^login$ controllers/iniciarSesion.php
+RewriteRule ^logout$ controllers/cerrarSesion.php
 RewriteRule ^registro$ controllers/registroCliente.php 
 RewriteRule ^catalogo$ controllers/mostrarCatalogo.php 
-RewriteRule ^login$ controllers/iniciarSesion.php
 RewriteRule ^menus-presupuesto$ controllers/menusPresupuesto.php 
 RewriteRule ^servicios-presupuesto$ controllers/serviciosPresupuesto.php
 RewriteRule ^resumen$ controllers/verResumen.php
 RewriteRule ^solicitudes-pendientes$ controllers/verSolicitudesPendientes.php
+
 
 RewriteRule ^cliente-([0-9]+)$ controllers/detalleCliente.php?id=$1 
 RewriteRule ^solicitud-([0-9]+)$ controllers/detalleSolicitud.php?id=$1

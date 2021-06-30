@@ -12,5 +12,6 @@
     <p>Un representante se comunicará con usted a la brevedad para ultimar detalles</p>
     <p>¡Gracias por elegirnos!</p>
     <small>El staff de Catering Essen</small>
+    <a href="catalogo">Menú Principal</a>
 </body>
 </html>

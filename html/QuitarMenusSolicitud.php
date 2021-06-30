@@ -26,7 +26,7 @@
     </form>
 
     <?php } else { 
-        $this->mostrarMensaje("La solicitud debe contener al menos 1 menú");  
+        $this->mostrarMensaje("La solicitud debe contener al menos 1 tipo de menú");  
     } ?>
 
 

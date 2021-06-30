@@ -5,8 +5,6 @@ require '../fw/fw.php';
 require '../models/Solicitudes.php';
 require '../models/Menus.php';
 require '../models/Servicios.php';
-require '../models/MenusEvento.php';
-require '../models/ServiciosEvento.php';
 
 require '../views/Resumen.php';
 require '../views/PresupuestoOk.php';

@@ -29,7 +29,6 @@ class Solicitudes extends Model{
 
         if(count($servicios) > 0){
             $total = $this->getTotalMenusSolicitud($lastID);
-            var_dump($total);
             $this->saveServiciosSolicitud($lastID, $servicios, $total['total']);
         } 
 
