@@ -9,6 +9,9 @@
 <body>
     <h1>Su sesión ha finalizado</h1>
 
+    <p>Gracias por utilizar el sistema de Catering Essen</p>
+    <p>¡Hasta la próxima!</p>
+
    <a href="login">Iniciar sesión</a>
 </body>
 </html>

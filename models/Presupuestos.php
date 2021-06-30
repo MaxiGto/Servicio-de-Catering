@@ -19,6 +19,35 @@ class Presupuestos extends Model{
         ");
     }
 
+    public function verificarIDPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');        
+
+        $this->db->query("SELECT * FROM presupuestos
+        WHERE id_presupuesto = $id_presupuesto
+        LIMIT 1
+        ");
+
+        if($this->db->numRows() == 1) return true;
+
+        return false;
+    }
+
+    public function getPresupuestoByID($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');        
+
+        $this->db->query("SELECT * FROM presupuestos
+                        WHERE id_presupuesto = $id_presupuesto
+                        LIMIT 1
+        ");
+
+        return $this->db->fetch();
+
+    }
+
     public function getPresupuestosCliente($id_cliente){
 
         if(!ctype_digit("$id_cliente")) throw new ValidationException('ID de cliente no es un número');
@@ -28,6 +57,7 @@ class Presupuestos extends Model{
                     LEFT JOIN solicitudes sol on sol.id_solicitud = p.id_solicitud
                     LEFT JOIN clientes c on c.id_cliente = sol.id_cliente
                     WHERE c.id_cliente = $id_cliente
+                    AND p.aceptado is NULL
         ");
 
         return $this->db->fetchAll();
@@ -43,9 +73,109 @@ class Presupuestos extends Model{
                     LEFT JOIN solicitudes sol on sol.id_solicitud = p.id_solicitud
                     LEFT JOIN clientes c on c.id_cliente = sol.id_cliente
                     WHERE c.id_cliente = $id_cliente
+                    AND p.aceptado is NULL
         ");
 
         return $this->db->numRows($this->db->fetchAll());
+    }
+
+    public function getMenusPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT m.id_menu, m.nombre , m.precio, me.cantidad, (m.precio * me.cantidad) as total FROM presupuestos p
+                        LEFT JOIN menus_evento me on me.id_solicitud = p.id_solicitud
+                        LEFT JOIN menus m on m.id_menu = me.id_menu
+                        WHERE p.id_presupuesto = $id_presupuesto
+        ");
+
+        return $this->db->fetchAll();
+
+    }
+
+    public function getTotalMenusPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto, SUM(cantidad) as 'total' 
+                        FROM menus_evento me
+                        LEFT JOIN presupuestos p on p.id_solicitud = me.id_solicitud
+                        WHERE me.id_solicitud = (SELECT id_solicitud FROM presupuestos
+                        WHERE id_presupuesto = $id_presupuesto)
+                        GROUP BY p.id_presupuesto
+                        LIMIT 1
+        ");
+
+        return $this->db->fetch();
+
+    }
+
+    public function getPrecioTotalMenusPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto, SUM(m.precio * me.cantidad) as 'total_menus' FROM presupuestos p
+                        LEFT JOIN menus_evento me on me.id_solicitud = p.id_solicitud
+                        LEFT JOIN menus m on m.id_menu = me.id_menu
+                        WHERE p.id_presupuesto = $id_presupuesto
+                        GROUP BY p.id_presupuesto
+                        LIMIT 1
+        ");
+
+        return $this->db->fetch();
+
+    }
+
+    public function presupuestoTieneServicios($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT * FROM servicios_evento
+                        WHERE id_solicitud = (SELECT id_solicitud FROM presupuestos
+                        WHERE id_presupuesto = $id_presupuesto)
+        ");
+
+        if($this->db->numRows() > 0) return true;
+
+        return false;
+    }
+
+    public function getServiciosPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT s.id_servicio, s.nombre , s.precio, se.cantidad, (s.precio * se.cantidad) as total FROM presupuestos p
+                        LEFT JOIN servicios_evento se on se.id_solicitud = p.id_solicitud
+                        LEFT JOIN servicios_adicionales s on s.id_servicio = se.id_servicio
+                        WHERE p.id_solicitud = (SELECT id_solicitud FROM presupuestos
+                        WHERE id_presupuesto = $id_presupuesto)
+        ");
+
+        return $this->db->fetchAll();
+
+    }
+
+    public function getPrecioTotalServiciosPresupuesto($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto, SUM(s.precio * se.cantidad) as 'total_servicios' FROM presupuestos p
+                        LEFT JOIN servicios_evento se on se.id_solicitud = p.id_solicitud
+                        LEFT JOIN servicios_adicionales s on s.id_servicio = se.id_servicio
+                        WHERE p.id_solicitud = (SELECT id_solicitud FROM presupuestos
+                        WHERE id_presupuesto = $id_presupuesto)
+                        GROUP BY p.id_presupuesto
+                        LIMIT 1
+        ");
+
+        return $this->db->fetch();
+
     }
 
 }
