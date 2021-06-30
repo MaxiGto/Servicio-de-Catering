@@ -2,9 +2,10 @@
 
 RewriteEngine on
 
+RewriteRule ^registro$ controllers/registroCliente.php
+RewriteRule ^registro-completado$ controllers/registroCompletado.php 
 RewriteRule ^login$ controllers/iniciarSesion.php
 RewriteRule ^logout$ controllers/cerrarSesion.php
-RewriteRule ^registro$ controllers/registroCliente.php 
 RewriteRule ^catalogo$ controllers/mostrarCatalogo.php 
 RewriteRule ^menus-presupuesto$ controllers/menusPresupuesto.php 
 RewriteRule ^servicios-presupuesto$ controllers/serviciosPresupuesto.php

@@ -20,27 +20,27 @@
         <form action="" method="POST" class="formulario">
             <div>
                 <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" name="nombre" class="input-registro">
+                <input type="text" id="nombre" name="nombre" class="input-registro" autocomplete="off">
             </div>
 
             <div>
                 <label for="apellido">Apellido: </label>
-                <input type="text" id="apellido" name="apellido" class="input-registro">
+                <input type="text" id="apellido" name="apellido" class="input-registro" autocomplete="off">
             </div>
 
             <div>
                 <label for="email">Correo: </label>
-                <input type="email" id="email" name="email" class="input-registro">
+                <input type="email" id="email" name="email" class="input-registro" autocomplete="off">
             </div>
 
             <div>
                 <label for="telefono">Teléfono: </label>
-                <input type="tel" id="telefono" name="telefono" class="input-registro">
+                <input type="tel" id="telefono" name="telefono" class="input-registro" autocomplete="off">
             </div>
 
             <div>
                 <label for="usuario">Nombre de usuario: </label>
-                <input type="text" id="usuario" name="usuario" class="input-registro">
+                <input type="text" id="usuario" name="usuario" class="input-registro" autocomplete="off"> 
             </div>
 
             <div>

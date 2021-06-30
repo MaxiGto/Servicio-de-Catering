@@ -27,10 +27,8 @@ if(count($_POST)>0){
     $u->nuevoUsuario($_POST['usuario'], $_POST['password'], $_POST['password2']);
     $c->nuevoCliente($_POST['usuario'], $_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['telefono']);
 
-
-
-    
-    
+    header("Location: registro-completado");
+    exit;
 
 } else {
     $v = new RegistroCliente();
