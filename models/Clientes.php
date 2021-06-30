@@ -81,5 +81,20 @@ class Clientes extends Model{
 
     }
 
+    public function verificarIDCliente($id_cliente){
+
+        if(!ctype_digit("$id_cliente")) throw new ValidationException('ID de cliente no es un número');
+        if($id_cliente < 1) throw new ValidationException('ID de cliente no puede ser menor que 1');        
+
+        $this->db->query("SELECT * FROM clientes
+        WHERE id_cliente = $id_cliente
+        LIMIT 1
+        ");
+
+        if($this->db->numRows() == 1) return true;
+
+        return false;
+    }
+
     
 }

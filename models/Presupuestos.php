@@ -19,4 +19,33 @@ class Presupuestos extends Model{
         ");
     }
 
+    public function getPresupuestosCliente($id_cliente){
+
+        if(!ctype_digit("$id_cliente")) throw new ValidationException('ID de cliente no es un número');
+        if($id_cliente < 1) throw new ValidationException('ID de cliente no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto, p.fecha, p.monto, p.monto_adicional FROM presupuestos p
+                    LEFT JOIN solicitudes sol on sol.id_solicitud = p.id_solicitud
+                    LEFT JOIN clientes c on c.id_cliente = sol.id_cliente
+                    WHERE c.id_cliente = $id_cliente
+        ");
+
+        return $this->db->fetchAll();
+
+    }
+
+    public function getCantidadPresupuestosCliente($id_cliente){
+
+        if(!ctype_digit("$id_cliente")) throw new ValidationException('ID de cliente no es un número');
+        if($id_cliente < 1) throw new ValidationException('ID de cliente no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto, p.fecha, p.monto, p.monto_adicional FROM presupuestos p
+                    LEFT JOIN solicitudes sol on sol.id_solicitud = p.id_solicitud
+                    LEFT JOIN clientes c on c.id_cliente = sol.id_cliente
+                    WHERE c.id_cliente = $id_cliente
+        ");
+
+        return $this->db->numRows($this->db->fetchAll());
+    }
+
 }
