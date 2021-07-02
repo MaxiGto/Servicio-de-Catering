@@ -15,6 +15,20 @@ html{
     height: 100vh;
 }
 
+.contenedor a{
+    color: white;
+    background-color: rgba(255 , 255, 255, 0.4);
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.contenedor a:hover{
+    background-color: rgba(255 , 255, 255, 0.2);
+}
+
 .contenedor-form{
     background-color: rgba(255 , 255, 255, 0.4);
     padding: 20px;
@@ -43,3 +57,5 @@ html{
     margin-top: 10px;
     width: 100%;
 }
+
+
