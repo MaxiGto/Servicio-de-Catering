@@ -6,6 +6,21 @@ require '../models/Servicios.php';
 
 require '../views/ServiciosPresupuesto.php';
 
+if(!isset($_SESSION['auth'])){
+    header("Location: login");
+    exit;
+}
+
+if($_SESSION['rol'] != 'cliente'){
+    header("Location: principal");
+    exit;
+}
+
+if(!isset($_SESSION['menus'])){
+    header("Location: menus-presupuesto");
+    exit;
+}
+
 if(count($_POST) > 0 ){
 
     $v = new ServiciosPresupuesto();

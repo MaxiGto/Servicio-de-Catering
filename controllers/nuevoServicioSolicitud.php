@@ -1,6 +1,7 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthAdmin.php';
 
 require '../models/Solicitudes.php';
 
@@ -15,6 +16,8 @@ if(!$s->verificarIDSolicitud($_GET['id'])) die('ID de solicitud inválido');
 $v->idSolicitud = $_GET['id'];
 
 if(count($_POST) > 0){
+
+    if(!isset($_POST['servicio'])) die('No existe ID de servicio');
 
     $s->saveServicioSolicitud($_GET['id'], $_POST['servicio']);
     if($s->solicitudTieneServicios($_GET['id'])) $v->tieneServicios = true;

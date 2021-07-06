@@ -16,6 +16,7 @@ $m = new Menus();
 $s = new Servicios();
 
 $v = new Catalogo();
+if($_SESSION['rol'] == 'admin') $v->rol = 'admin';
 $v->menus = $m->getTodos();
 $v->servicios = $s->getTodos();
 $v->render();

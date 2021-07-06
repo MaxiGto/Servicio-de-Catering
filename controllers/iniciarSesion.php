@@ -26,7 +26,7 @@ if(count($_POST) > 0){
         $cliente = $c->getClientByUserName($_SESSION['usuario']);
         $_SESSION['id_cliente'] = $cliente['id_cliente'];
 
-        header('Location: catalogo');
+        header('Location: principal');
         exit;
     } else {
         $v = new Login();

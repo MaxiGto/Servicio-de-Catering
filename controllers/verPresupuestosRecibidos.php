@@ -7,6 +7,16 @@ require '../models/Presupuestos.php';
 
 require '../views/PresupuestosRecibidos.php';
 
+if(!isset($_SESSION['auth'])){
+    header("Location: login");
+    exit;
+}
+
+if($_SESSION['rol'] != 'cliente'){
+    header("Location: principal");
+    exit;
+}
+
 if(!isset($_SESSION['id_cliente'])) die('No existe ID de cliente');
 
 $c = new Clientes();

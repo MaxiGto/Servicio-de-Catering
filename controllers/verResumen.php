@@ -5,9 +5,28 @@ require '../fw/fw.php';
 require '../models/Solicitudes.php';
 require '../models/Menus.php';
 require '../models/Servicios.php';
+require '../models/Clientes.php';
 
 require '../views/Resumen.php';
 require '../views/PresupuestoOk.php';
+
+if(!isset($_SESSION['auth'])){
+    header("Location: login");
+    exit;
+}
+
+if($_SESSION['rol'] != 'cliente'){
+    header("Location: principal");
+    exit;
+}
+
+if(!isset($_SESSION['menus']) || !isset($_SESSION['servicios'])){
+    header("Location: menus-presupuesto");
+    exit;
+}
+
+$c = new Clientes();
+if(!$c->verificarIDCliente($_SESSION['id_cliente'])) die('ID de cliente inválido');
 
 if(count($_POST) > 0){
 
@@ -18,11 +37,18 @@ if(count($_POST) > 0){
 
 } else {
     $m = new Menus();
-    $s = new Servicios();
 
     $v = new Resumen();
+
     $v->menus = $m->getMenusEvento($_SESSION['menus']);
-    $v->servicios = $s->getServiciosEvento($_SESSION['servicios']);
+
+    if(count($_SESSION['servicios']) > 0){
+        $s = new Servicios();
+        $v->servicios = $s->getServiciosEvento($_SESSION['servicios']);
+    } else {
+        $v->sinServicios = true;
+    }
+   
     $v->render();
     }
 
