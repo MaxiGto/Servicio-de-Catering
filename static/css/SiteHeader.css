@@ -1,0 +1,30 @@
+.site-header {
+    background-color: #7CB342;
+    padding: 20px;
+}
+
+.contenedor-header{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-title {
+    color: white;
+    font-size: 30px;
+    font-style: italic;
+    cursor: pointer;
+}
+
+#header-logout {
+    background-color: red;
+    border: 2px solid #F0F3F8;
+    border-radius: 5px;
+    color: #F0F3F8;
+    font-size: 25px;
+    padding: 3px 7px;
+}
+
+.site-header a{
+    text-decoration: none;
+}
