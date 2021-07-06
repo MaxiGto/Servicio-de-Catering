@@ -32,7 +32,7 @@
         <h3>Servicios adicionales solicitados</h3>
 
         <table class="center-table">
-        <th>Cantidad</th>
+        <th>Nombre</th>
             <?php foreach($this->servicios as $s){ ?>
                 <tr><td><?=$s['nombre']?></td></tr>
             <?php } ?>
