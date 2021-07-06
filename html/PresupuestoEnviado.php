@@ -8,10 +8,10 @@
     <title>Presupuesto enviado</title>
 </head>
 <body>
-    <div class="contenedor">
-    <h1 class="center">El presupuesto ha sido enviado exitosamente</h1>
+    <div class="contenedor center">
+    <h1>El presupuesto ha sido enviado exitosamente</h1>
 
-   <a href="solicitudes-pendientes" class="main-btn primary center">Volver</a>
+   <a href="solicitudes-pendientes" class="main-btn primary">Volver</a>
    </div>
 </body>
 </html>

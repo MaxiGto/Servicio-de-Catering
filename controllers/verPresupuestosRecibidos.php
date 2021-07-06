@@ -1,7 +1,7 @@
 <?php
 
 require '../fw/fw.php';
-require '../fw/AuthCliente.php.php';
+require '../fw/AuthCliente.php';
 
 require '../models/Clientes.php';
 require '../models/Presupuestos.php';

@@ -15,7 +15,7 @@
         <p>¡Gracias por elegirnos!</p>
         <small class="bold">El staff de Catering Essen</small>
         <div>
-        <a href="principal" class="main-btn">Menú Principal</a>
+        <a href="principal" class="main-btn primary">Menú Principal</a>
         </div>
     </div>
 </body>
