@@ -4,15 +4,77 @@ body{
 
 h1, h2{
     color: #7CB342;
-    text-align: center;
 }
 
 h3{
     color: #EBAA0F;
 }
 
+ul{
+    padding-left: 0px;
+}
+
+li{
+    list-style: none;
+}
+
+textarea{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 170px;
+    width: 336px;
+}
+
+hr{
+    border: 3px solid #7CB342;
+    border-radius: 5px;
+}
+
+table{
+    border-spacing: 0;
+}
+
+tr{
+    background-color: white;
+}
+
+th{
+    text-align: center;
+    background-color: #7CB342;
+    color: white;
+    padding: 7px;
+    
+}
+
+
+td{
+    text-align: center;
+    padding: 10px;
+}
+
+img{
+    height: 170px;
+    width: 170px;
+}
+
+.mensaje{
+    color: green;
+    background-color: transparent;
+    border: 2px solid green;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+}
+
+.error{
+    color: red;
+    border: 2px solid red;
+}
+
 .contenedor{
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -32,6 +94,24 @@ h3{
     text-align: center;
 }
 
+.center-table{
+    margin: 0 auto;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
+.highlight{
+    color: #EBAA0F;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
 .input-style{
     background-color: #F0F3F8;
     border: none;
@@ -40,7 +120,6 @@ h3{
 }
 
 .main-btn{
-    background-color: #EBAA0F;
     border: none;
     border-radius: 5px;
     color: white;
@@ -51,6 +130,40 @@ h3{
     text-transform: uppercase;
 }
 
+.menu-btn{
+    display: block;
+}
+
+.primary{
+    background-color: #EBAA0F;
+
+    transition: background-color .3s ease;
+}
+
+.primary:hover{
+    background-color: #cc9516;
+}
+
 .secondary{
     background-color: #7CB342;
+
+    transition: background-color .3s ease;
+}
+
+.secondary:hover{
+    background-color: #608a33;
+}
+
+.tertiary{
+    background-color: rgb(167, 11, 11);
+
+    transition: background-color .3s ease;
+}
+
+.tertiary:hover{
+    background-color: rgb(121, 11, 11);
+}
+
+.mt-0{
+    margin-top: 0;
 }

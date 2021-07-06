@@ -47,6 +47,16 @@ html{
     transition: background-color .3s ease;
 }
 
-.btn-login:hover{
+.btn-logout{
+    background-color:rgb(70, 181, 255);
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.btn-logout:hover, .btn-login:hover{
     background-color: rgb(27, 141, 216);
 }
