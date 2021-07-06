@@ -6,12 +6,14 @@ RewriteRule ^registro$ controllers/registroCliente.php
 RewriteRule ^registro-completado$ controllers/registroCompletado.php 
 RewriteRule ^login$ controllers/iniciarSesion.php
 RewriteRule ^logout$ controllers/cerrarSesion.php
+RewriteRule ^principal$ controllers/menuPrincipal.php 
 RewriteRule ^catalogo$ controllers/mostrarCatalogo.php 
 RewriteRule ^menus-presupuesto$ controllers/menusPresupuesto.php 
 RewriteRule ^servicios-presupuesto$ controllers/serviciosPresupuesto.php
 RewriteRule ^resumen$ controllers/verResumen.php
 RewriteRule ^solicitudes-pendientes$ controllers/verSolicitudesPendientes.php
 RewriteRule ^presupuestos-recibidos$ controllers/verPresupuestosRecibidos.php
+RewriteRule ^actualizar-precio-menu$ controllers/actualizarPrecioMenu.php
 
 
 RewriteRule ^cliente-([0-9]+)$ controllers/detalleCliente.php?id=$1 
