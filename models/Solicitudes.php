@@ -7,8 +7,11 @@ class Solicitudes extends Model{
         if(strlen($comentario) > 300) throw new ValidationException('Comentario muy largo');
         $comentario = $this->db->escape($comentario);
 
+        $c = new Clientes();
+
         if(!ctype_digit("$id_cliente")) throw new ValidationException('ID cliente no es un número');
         if($id_cliente < 1) throw new ValidationException('ID cliente no puede ser menor que 1');
+        if(!$c->verificarIDCliente($id_cliente)) throw new ValidationException('ID de cliente inválido');
 
         foreach($menus as $id => $cantidad){
 
@@ -45,6 +48,9 @@ class Solicitudes extends Model{
         if(!ctype_digit("$cantidad")) throw new ValidationException('Cantidad no es un número');
         if($cantidad < 1) throw new ValidationException('Cantidad no puede ser menor que 1');
 
+        $m = new Menus();
+        if(!$m->verificarMenu($id_menu)) throw new ValidationException('ID de menú inválido');
+
         $this->db->query("INSERT INTO menus_evento (id_solicitud, id_menu, cantidad)
                             VALUES ($id_solicitud, $id_menu, $cantidad)
         ");
@@ -56,6 +62,8 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
+        $m = new Menus();
+
         foreach($menus as $id => $cantidad){
 
             if(!ctype_digit("$id")) throw new ValidationException('ID de menú no es un número');
@@ -63,6 +71,8 @@ class Solicitudes extends Model{
 
             if(!ctype_digit("$cantidad")) throw new ValidationException('Cantidad no es un número');
             if($cantidad < 1) throw new ValidationException('Cantidad no puede ser menor que 1');
+
+            if(!$m->verificarMenu($id)) throw new ValidationException('ID de menú inválido');
         }
 
         foreach($menus as $id => $cantidad){
