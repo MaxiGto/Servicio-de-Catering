@@ -1,12 +1,11 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthAdmin.php';
 
 require '../models/Menus.php';
 
 require '../views/ModificarPrecioMenu.php';
-
-require '../fw/AuthAdmin.php';
 
 $m = new Menus();
 $v = new ModificarPrecioMenu();

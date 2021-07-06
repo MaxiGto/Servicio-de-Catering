@@ -1,6 +1,7 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthAdmin.php';
 
 require '../models/Clientes.php';
 

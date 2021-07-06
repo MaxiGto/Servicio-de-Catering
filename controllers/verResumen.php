@@ -1,6 +1,7 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthCliente.php';
 
 require '../models/Solicitudes.php';
 require '../models/Menus.php';
@@ -10,15 +11,7 @@ require '../models/Clientes.php';
 require '../views/Resumen.php';
 require '../views/PresupuestoOk.php';
 
-if(!isset($_SESSION['auth'])){
-    header("Location: login");
-    exit;
-}
-
-if($_SESSION['rol'] != 'cliente'){
-    header("Location: principal");
-    exit;
-}
+if(!isset($_SESSION['id_cliente'])) die('No existe ID de cliente');
 
 if(!isset($_SESSION['menus']) || !isset($_SESSION['servicios'])){
     header("Location: menus-presupuesto");

@@ -1,20 +1,11 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthCliente.php';
 
 require '../models/Menus.php';
 
 require '../views/MenusPresupuesto.php';
-
-if(!isset($_SESSION['auth'])){
-    header("Location: login");
-    exit;
-}
-
-if($_SESSION['rol'] != 'cliente'){
-    header("Location: principal");
-    exit;
-}
 
 $hayMenu = true;
 

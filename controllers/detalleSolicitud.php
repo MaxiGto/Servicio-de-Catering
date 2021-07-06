@@ -1,12 +1,13 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthAdmin.php';
 
 require '../models/Solicitudes.php';
 
 require '../views/DatosSolicitud.php';
 
-require '../fw/AuthAdmin.php';
+
 
 if(!isset($_GET['id'])) die('No existe ID de solicitud');
 

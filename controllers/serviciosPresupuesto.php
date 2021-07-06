@@ -1,20 +1,11 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/AuthCliente.php';
 
 require '../models/Servicios.php';
 
 require '../views/ServiciosPresupuesto.php';
-
-if(!isset($_SESSION['auth'])){
-    header("Location: login");
-    exit;
-}
-
-if($_SESSION['rol'] != 'cliente'){
-    header("Location: principal");
-    exit;
-}
 
 if(!isset($_SESSION['menus'])){
     header("Location: menus-presupuesto");

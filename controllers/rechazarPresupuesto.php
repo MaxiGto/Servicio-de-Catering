@@ -1,20 +1,11 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/Auth.php';
 
 require '../models/Presupuestos.php';
 
 require '../views/PresupuestoRechazado.php';
-
-if(!isset($_SESSION['auth'])){
-    header("Location: login");
-    exit;
-}
-
-if($_SESSION['rol'] != 'cliente'){
-    header("Location: principal");
-    exit;
-}
 
 if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 

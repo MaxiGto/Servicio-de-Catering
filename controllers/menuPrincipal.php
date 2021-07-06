@@ -1,13 +1,9 @@
 <?php
 
 require '../fw/fw.php';
+require '../fw/Auth.php';
 
 require '../views/PantallaPrincipal.php';
-
-if(!isset($_SESSION['auth'])){
-    header("Location: login");
-    exit;
-}
 
 $v = new PantallaPrincipal();
 
