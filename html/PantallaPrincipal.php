@@ -8,17 +8,17 @@
     <title>Menú Principal</title>
 </head>
 <body>
-    <h1>Bienvenido al sistema de gestión de Catering Essen</h1>
+    <h1 class="center">¡Bienvenido al sistema de gestión de Catering Essen!</h1>
 
     <?php if($this->rol == 'cliente') { ?>
 
         <div class="contenedor">
         <h3 class="center">Seleccione la opción deseada</h3>
             <div class="contenido center">
-                <a href="catalogo" class="main-btn secondary">Ver catálogo de menús y servicios adicionales</a>
+                <a href="catalogo" class="main-btn menu-btn secondary">Ver catálogo de menús y servicios adicionales</a>
                 <div>
-                <a href="menus-presupuesto" class="main-btn">Elaborar presupuestos</a>
-                <a href="presupuestos-recibidos" class="main-btn">Ver y confirmar presupuestos</a>
+                <a href="menus-presupuesto" class="main-btn menu-btn primary">Elaborar presupuestos</a>
+                <a href="presupuestos-recibidos" class="main-btn menu-btn primary">Ver y confirmar presupuestos</a>
                 </div>
             </div>
         </div>
@@ -29,9 +29,12 @@
 
     <div class="contenedor">
     <h3 class="center">Seleccione la opción deseada</h3>
-        <div class="contenido">
-            <a href="catalogo">Ver catálogo de menús y servicios adicionales</a>
-            <a href="solicitudes-pendientes">Ver solicitudes pendientes</a>
+        <div class="contenido center">
+            <div>
+            <a href="catalogo" class="main-btn menu-btn secondary">Ver catálogo de menús y servicios adicionales</a>
+            <a href="actualizar-precio-menu" class="main-btn menu-btn secondary">Actualizar precios de menús</a>
+            </div>
+            <a href="solicitudes-pendientes" class="main-btn menu-btn primary">Ver solicitudes pendientes</a>
         </div>
     </div>
 

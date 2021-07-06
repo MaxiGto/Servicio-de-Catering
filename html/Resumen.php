@@ -4,46 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/General.css">
     <title>Resumen</title>
 </head>
 <body>
-    <h1>Resumen de presupuesto</h1>
+    <div class="contenedor center">
+        <h1>Resumen de presupuesto</h1>
 
-    <h3>Menús solicitados</h3>
+        <h3>Menús solicitados</h3>
 
-    <ul>
-        <?php 
+        <table class="center-table">
+        <th>Cantidad</th><th>Nombre</th>
+            <?php 
+            
+            $total = 0;
+
+            foreach($this->menus as $m){ ?>
+                <tr><td><?=$m['cantidad']?></td> <td><?=$m['nombre']?></td></tr>
+                <?php $total = $total + $m['cantidad'];
+            } ?>
+        </table>
+
+        <p><span class="bold">Total:</span> <?= $total ?> menús</p>
         
-        $total = 0;
+        <?php if(!$this->sinServicios) { ?>
 
-        foreach($this->menus as $m){ ?>
-            <li> <?=$m['cantidad']?> <?=$m['nombre']?>  </li>
-            <?php $total = $total + $m['cantidad'];
-        } ?>
-    </ul>
+        <h3>Servicios adicionales solicitados</h3>
 
-    <p>Total: <?= $total ?> menús</p>
+        <table class="center-table">
+        <th>Cantidad</th>
+            <?php foreach($this->servicios as $s){ ?>
+                <tr><td><?=$s['nombre']?></td></tr>
+            <?php } ?>
+        </table>
 
-    <h3>Servicios adicionales solicitados</h3>
-
-    <ul>
-        <?php foreach($this->servicios as $s){ ?>
-            <li> <?=$s['nombre']?>  </li>
         <?php } ?>
-    </ul>
 
-    <form action="" method="POST">
-        
-        <label for="comentario">Aquí puede escribirnos algún comentario adicional: </label>
-        <div>
-            <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
-        </div>
+        <form action="" method="POST">
+            
+            <label for="comentario" class="mt-10">Aquí puede escribirnos algún comentario adicional: </label>
+            <div>
+                <textarea name="comentario" id="comentario" cols="50" rows="10"></textarea>
+            </div>
 
-        <a href="catalogo">Volver al inicio</a>
-        <a href="menus-presupuesto">Rehacer presupuesto</a>
-        <input type="submit" value="Solicitar presupuesto">
+            <a href="principal" class="main-btn secondary">Volver al inicio</a>
+            <a href="menus-presupuesto" class="main-btn secondary">Rehacer presupuesto</a>
+            <input type="submit" value="Solicitar presupuesto" class="main-btn primary">
 
-    </form>
+        </form>
+    </div>
 
     
 </body>

@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/General.css">
     <title>Presupuestos</title>
 </head>
 <body>
+    <div class="contenedor center">
     <h1>Presupuestos Recibidos</h1>
 
     <h3> <?= $this->cantidad ?> presupuestos recibidos </h3>
-
-    <table>
     
     <?php foreach($this->presupuestos as $p) { ?>
         <hr/>
-        <p> <span><?= $p['fecha'] ?></span> <a href="presupuesto-<?=$p['id_presupuesto']?>">Ver presupuesto</a></p>
+        <p> <span class="bold">Fecha:</span> <span class="mr-10"><?= $p['fecha'] ?></span> <a href="presupuesto-<?=$p['id_presupuesto']?>" class="main-btn secondary mt-0">Ver presupuesto</a></p>
         <hr/>
     <?php } ?>
 
-    </table>
+    <a href="principal" class="main-btn primary">Menú Principal</a>
 
-    <a href="catalogo">Menú Principal</a>
+    </div>
 
 
 </body>
