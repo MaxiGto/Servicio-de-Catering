@@ -29,7 +29,31 @@ class Presupuestos extends Model{
         LIMIT 1
         ");
 
-        if($this->db->numRows() == 1) return true;
+    $res = $this->db->fetch();
+
+    if($this->db->numRows($res) == 1 && $res['aceptado'] == NULL) return true;
+
+        return false;
+    }
+
+    public function verificarPresupuestoCliente($id_presupuesto, $id_cliente){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');
+        
+        if(!ctype_digit("$id_cliente")) throw new ValidationException('ID de cliente no es un número');
+        if($id_cliente < 1) throw new ValidationException('ID de cliente no puede ser menor que 1');   
+        
+        $this->db->query("SELECT c.id_cliente from presupuestos p
+                        INNER JOIN solicitudes sol ON sol.id_solicitud = p.id_solicitud
+                        INNER JOIN clientes c ON c.id_cliente = sol.id_cliente
+                        WHERE p.id_presupuesto = $id_presupuesto
+                        LIMIT 1
+        ");
+
+        $res = $this->db->fetch();
+
+        if($this->db->numRows($res) == 1 && $res['id_cliente'] == $id_cliente) return true;
 
         return false;
     }
