@@ -14,6 +14,7 @@ $v = new DatosPresupuesto();
 
 if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
 if(!$p->verificarPresupuestoCliente($_GET['id'], $_SESSION['id_cliente'])) die('No tiene permisos para acceder a esta página');
+if(!$p->verificarPrespuestoPendiente($_GET['id'])) die('Presupuesto no disponible');
 $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
 
 $v->menus = $p->getMenusPresupuesto($_GET['id']);
