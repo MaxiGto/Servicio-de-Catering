@@ -1,7 +1,7 @@
 <?php
 
 require '../fw/fw.php';
-require '../fw/Cliente.php';
+require '../fw/AuthCliente.php';
 
 require '../models/Presupuestos.php';
 
@@ -13,6 +13,7 @@ $p = new Presupuestos();
 $v = new DatosPresupuesto();
 
 if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
+if(!$p->verificarPresupuestoCliente($_GET['id'], $_SESSION['id_cliente'])) die('No tiene permisos para acceder a esta página');
 $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
 
 $v->menus = $p->getMenusPresupuesto($_GET['id']);
