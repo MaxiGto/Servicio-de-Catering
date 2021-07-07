@@ -360,5 +360,23 @@ class Solicitudes extends Model{
 
     }
 
+    public function solicitudPresupuestada($id_solicitud){
+
+        if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
+        if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
+
+        $this->db->query("SELECT p.id_presupuesto from solicitudes sol
+                        INNER JOIN presupuestos p on p.id_solicitud = sol.id_solicitud
+                        WHERE sol.id_solicitud = $id_solicitud
+                        LIMIT 1
+        ");
+
+        $res = $this->db->fetch();
+
+        if($this->db->numRows($res)) return true;
+
+        return false;
+    }
+
 }
 

@@ -15,6 +15,7 @@ $s = new Solicitudes();
 $v = new DatosSolicitud();
 
 if(!$s->verificarIDSolicitud($_GET['id'])) die('ID de solicitud inválido');
+if($s->solicitudPresupuestada($_GET['id'])) die('Solicitud no disponible');
 $v->solicitud = $s->getSolicitudByID($_GET['id']);
 
 $v->menus = $s->getMenusSolicitud($_GET['id']);
