@@ -50,7 +50,6 @@ class Usuarios extends Model{
 
         if(strlen($password)<5) throw new ValidationException('Contraseña muy corta');
         if(strlen($password)>30) throw new ValidationException('Contraseña muy larga');
-        $password = $this->db->escape($password);
 
         $password = SHA1($password);
 
