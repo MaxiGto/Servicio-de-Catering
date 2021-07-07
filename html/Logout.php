@@ -15,7 +15,7 @@
     <p>Gracias por utilizar el sistema de Catering Essen</p>
     <p>¡Hasta la próxima!</p>
 
-   <a href="login" class="btn-logout">Iniciar sesión</a>
+   <a href="login">Iniciar sesión</a>
    </div>
    </div>
 </body>

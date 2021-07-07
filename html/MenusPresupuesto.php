@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/SiteHeader.css">
     <link rel="stylesheet" href="./static/css/General.css">
     <title>Presupuesto</title>
 </head>
 <body>
+
+    <?php include '../html/SiteHeader.php' ?>
+
     <div class="contenedor">
     <h1 class="center">Selección de Menús</h1>
 
