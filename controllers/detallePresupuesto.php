@@ -8,6 +8,7 @@ require '../models/Presupuestos.php';
 require '../views/DatosPresupuesto.php';
 
 if(!isset($_GET['id'])) die('No existe ID de presupuesto');
+if(!isset($_SESSION['id_cliente'])) die('No existe ID de cliente');
 
 $p = new Presupuestos();
 $v = new DatosPresupuesto();
