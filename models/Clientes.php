@@ -8,6 +8,7 @@ class Clientes extends Model{
 
         if(strlen($email)<6) throw new ValidationException('Correo muy corto');
         if(strlen($email)>50) throw new ValidationException('Correo muy largo');
+        if(!$this->verificarEmailCliente($email)) throw new ValidationException('Correo inválido');
         $email = $this->db->escape($email);
 
         $this->db->query("SELECT * FROM clientes
@@ -30,6 +31,7 @@ class Clientes extends Model{
 
         if(strlen($email)<6) throw new ValidationException('Correo muy corto');
         if(strlen($email)>50) throw new ValidationException('Correo muy largo');
+        if(!$this->verificarEmailCliente($email)) throw new ValidationException('Correo inválido');
         $email = $this->db->escape($email);
 
         if(strlen($telefono)<6) throw new ValidationException('Telefono muy corto');
@@ -94,6 +96,10 @@ class Clientes extends Model{
         if($this->db->numRows() == 1) return true;
 
         return false;
+    }
+
+    public function verificarEmailCliente($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     
