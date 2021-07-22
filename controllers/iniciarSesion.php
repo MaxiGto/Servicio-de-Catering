@@ -7,6 +7,11 @@ require '../models/Clientes.php';
 
 require '../views/Login.php';
 
+if(isset($_SESSION['auth'])){
+    header("Location: principal");
+    exit;
+}
+
 if(count($_POST) > 0){
 
     if(!isset($_POST['user'])) die('Falta email');
