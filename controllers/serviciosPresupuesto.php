@@ -12,7 +12,7 @@ if(!isset($_SESSION['menus'])){
     exit;
 }
 
-if(count($_POST) > 0 ){
+if(isset($_POST['servicios'])){
 
     $v = new ServiciosPresupuesto();
     $v->repetido = false;
