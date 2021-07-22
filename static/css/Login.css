@@ -22,6 +22,10 @@ html{
     padding: 20px;
 }
 
+.center{
+    margin: 0 auto;
+}
+
 .login-input{
     border: none;
     border-radius: 5px;
@@ -37,6 +41,7 @@ html{
 }
 
 a {
+    color: white;
     background-color:rgb(70, 181, 255);
     border: none;
     border-radius: 5px;
