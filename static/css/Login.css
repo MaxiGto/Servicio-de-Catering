@@ -3,6 +3,7 @@ html{
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     color: white;
 }
