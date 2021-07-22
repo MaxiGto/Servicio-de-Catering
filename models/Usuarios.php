@@ -24,8 +24,6 @@ class Usuarios extends Model{
 
     public function nuevoUsuario($nombre, $password, $password2){
 
-        $nombre = $this->validarNombreUsuario($nombre);
-
         if(strlen($password)<5) throw new ValidationException('Contraseña muy corta');
         if(strlen($password)>30) throw new ValidationException('Contraseña muy larga');
 
