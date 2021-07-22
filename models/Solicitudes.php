@@ -6,6 +6,7 @@ class Solicitudes extends Model{
 
         if(strlen($comentario) > 300) throw new ValidationException('Comentario muy largo');
         $comentario = $this->db->escape($comentario);
+        $comentario = htmlentities($comentario);
 
         $c = new Clientes();
 
@@ -232,8 +233,8 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        if(!ctype_digit("$id_servicio")) throw new ValidationException('ID de menú no es un número');
-        if($id_servicio < 1) throw new ValidationException('ID de menú no puede ser menor que 1');
+        if(!ctype_digit("$id_servicio")) throw new ValidationException('ID de servicio no es un número');
+        if($id_servicio < 1) throw new ValidationException('ID de servicio no puede ser menor que 1');
 
         $res = $this->getTotalMenusSolicitud($id_solicitud);
 
