@@ -28,18 +28,18 @@ class Usuarios extends Model{
 
         if(strlen($password)<5) throw new ValidationException('Contraseña muy corta');
         if(strlen($password)>30) throw new ValidationException('Contraseña muy larga');
-        $password = $this->db->escape($password);
 
         if(strlen($password2)<5) throw new ValidationException('Contraseña2 muy corta');
         if(strlen($password2)>30) throw new ValidationException('Contraseña2 muy larga');
-        $password = $this->db->escape($password);
 
         if($password != $password2) throw new ValidationException("Las contraseñas no coinciden");
 
         if(!$this->existeNombreUsuario($nombre)) throw new ValidationException('Nombre de usuario ya existe');
 
+        $password = SHA1($password);
+
         $this->db->query("INSERT INTO usuarios (usuario, password, rol)
-                        VALUES('$nombre', SHA1('$password'), 'cliente')
+                        VALUES('$nombre', $password, 'cliente')
                         ");
 
     }
@@ -52,7 +52,6 @@ class Usuarios extends Model{
 
         if(strlen($password)<5) throw new ValidationException('Contraseña muy corta');
         if(strlen($password)>30) throw new ValidationException('Contraseña muy larga');
-        $password = $this->db->escape($password);
 
         $password = SHA1($password);
 
