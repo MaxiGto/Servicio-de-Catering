@@ -39,7 +39,7 @@ class Usuarios extends Model{
         $password = SHA1($password);
 
         $this->db->query("INSERT INTO usuarios (usuario, password, rol)
-                        VALUES('$nombre', $password, 'cliente')
+                        VALUES('$nombre', '$password', 'cliente')
                         ");
 
     }
@@ -86,6 +86,22 @@ class Usuarios extends Model{
                         WHERE usuario = '$nombre'
                         LIMIT 1
                         ");
+    }
+
+    public function borrarUsuarioByID($id_usuario){
+
+        if(!ctype_digit("$id_usuario")) throw new ValidationException('ID de usuario no es un número');
+        if($id_usuario < 1) throw new ValidationException('ID de usuario menor que 1');
+
+        $this->db->query("DELETE FROM usuarios
+                        WHERE id_usuario = $id_usuario
+                        LIMIT 1
+                        ");        
+
+    }
+
+    public function ultimoUsuarioInsertado(){
+        return $this->db->insertedID();
     }
 
 }
