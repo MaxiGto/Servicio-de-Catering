@@ -17,6 +17,7 @@
     <div class="contenedor">
         <div class="contenedor-form">
         <h1>Crear una cuenta</h1>
+        <?php if($this->error) $this->mostrarMensajeError('Por favor revise los datos de registro') ?>
         <form action="" method="POST" class="formulario">
             <div>
                 <label for="nombre">Nombre: </label>
