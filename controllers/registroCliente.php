@@ -23,12 +23,21 @@ if(count($_POST)>0){
     $c = new Clientes();
     $u = new Usuarios();
 
+    try {
+        $u->nuevoUsuario($_POST['usuario'], $_POST['password'], $_POST['password2']);
+        $c->nuevoCliente($_POST['usuario'], $_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['telefono']);
 
-    $u->nuevoUsuario($_POST['usuario'], $_POST['password'], $_POST['password2']);
-    $c->nuevoCliente($_POST['usuario'], $_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['telefono']);
+        header("Location: registro-completado");
+        exit;
 
-    header("Location: registro-completado");
-    exit;
+    } catch (ValidationException $e) {
+        $lastID = $u->ultimoUsuarioInsertado();
+        $u->borrarUsuarioByID($lastID);
+        $v = new RegistroCliente();
+        $v->error = true;
+        $v->render();
+    }
+    
 
 } else {
     $v = new RegistroCliente();
