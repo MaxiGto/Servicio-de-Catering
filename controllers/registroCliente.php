@@ -20,12 +20,18 @@ if(count($_POST)>0){
     if(!isset($_POST['password'])) die('Falta contraseña');
     if(!isset($_POST['password2'])) die('Falta confirmar contraseña');
 
+    $usuario = htmlentities($_POST['usuario']);
+    $nombre = htmlentities($_POST['nombre']);
+    $apellido = htmlentities($_POST['apellido']);
+    $email = htmlentities($_POST['email']);
+    $telefono = htmlentities($_POST['telefono']);
+
     $c = new Clientes();
     $u = new Usuarios();
 
     try {
-        $u->nuevoUsuario($_POST['usuario'], $_POST['password'], $_POST['password2']);
-        $c->nuevoCliente($_POST['usuario'], $_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['telefono']);
+        $u->nuevoUsuario($usuario, $_POST['password'], $_POST['password2']);
+        $c->nuevoCliente($usuario, $nombre, $apellido, $email, $telefono);
 
         header("Location: registro-completado");
         exit;
