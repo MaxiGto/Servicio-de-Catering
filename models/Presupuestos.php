@@ -243,4 +243,26 @@ class Presupuestos extends Model{
 
     }
 
+    public function getPresupuestosAceptados(){
+
+        $this->db->query("SELECT *
+                        FROM presupuestos
+                        WHERE aceptado = 'Y'
+        ");
+
+        return $this->db->fetchAll();
+
+    }
+
+    public function getCantidadPresupuestosAceptados(){
+
+        $this->db->query("SELECT *
+                        FROM presupuestos
+                        WHERE aceptado = 'Y'
+        ");
+
+        return $this->db->numRows($this->db->fetch());
+
+    }
+
 }

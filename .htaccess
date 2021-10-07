@@ -14,6 +14,7 @@ RewriteRule ^resumen$ controllers/verResumen.php
 RewriteRule ^solicitudes-pendientes$ controllers/verSolicitudesPendientes.php
 RewriteRule ^presupuestos-recibidos$ controllers/verPresupuestosRecibidos.php
 RewriteRule ^actualizar-precio-menu$ controllers/actualizarPrecioMenu.php
+RewriteRule ^presupuestos-aceptados$ controllers/presupuestosConfirmados.php
 
 
 RewriteRule ^cliente-([0-9]+)$ controllers/detalleCliente.php?id=$1 
