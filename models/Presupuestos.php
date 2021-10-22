@@ -265,4 +265,17 @@ class Presupuestos extends Model{
 
     }
 
+    public function getIDSolicitudPresupuesto($id_presupuesto){
+
+        $this->db->query("SELECT id_solicitud
+                        FROM presupuestos p 
+                        WHERE p.id_presupuesto = $id_presupuesto
+                        LIMIT 1
+
+        ");
+
+        return $this->db->fetch();
+
+    }
+
 }
