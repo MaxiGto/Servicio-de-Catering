@@ -27,3 +27,5 @@ RewriteRule ^quitar-servicios-([0-9]+)$ controllers/borrarServicioSolicitud.php?
 RewriteRule ^confirmar-presupuesto-([0-9]+)$ controllers/confirmarPresupuesto.php?id=$1
 RewriteRule ^aceptar-presupuesto-([0-9]+)$ controllers/aceptarPresupuesto.php?id=$1
 RewriteRule ^rechazar-presupuesto-([0-9]+)$ controllers/rechazarPresupuesto.php?id=$1
+RewriteRule ^presupuesto-aceptado-([0-9]+)$ controllers/detallePresupuestoAdmin.php?id=$1
+RewriteRule ^crear-evento-([0-9]+)$ controllers/crearEvento.php?id=$1
