@@ -18,7 +18,7 @@
         <div class="contenido">
             <p>Cantidad de personas: <?= $this->personas['total'] ?></p>
 
-            <form action="" method="POST" id="form">
+            <form action="seleccionar-encargado-<?=$this->id_presupuesto?>" method="POST" id="form">
 
                 <div>
                     <label for="direccion">Dirección: </label>

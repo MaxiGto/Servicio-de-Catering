@@ -10,24 +10,33 @@ require '../views/CrearEvento.php';
 
 if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 
-if(count($_POST) > 0 ){
+// if(count($_POST) > 0 ){
 
-    if(!isset($_POST['direccion'])) die('Falta dirección');
-    if(!isset($_POST['fecha'])) die('Falta fecha');
-    if(!isset($_POST['duracion'])) die('Falta duración');
-    if(!isset($_POST['descripcion'])) die('Falta descripción');
+//     if(!isset($_POST['direccion'])) die('Falta dirección');
+//     if(!isset($_POST['fecha'])) die('Falta fecha');
+//     if(!isset($_POST['duracion'])) die('Falta duración');
+//     if(!isset($_POST['descripcion'])) die('Falta descripción');
     
-    var_dump($_POST);
-    $e = new Eventos();
-    $e->saveNuevoEvento($_GET['id'], $_POST['direccion'], $_POST['fechaFinal'], $_POST['duracion'], $_POST['descripcion']);
+//     var_dump($_POST);
+//     $e = new Eventos();
+//     $e->saveNuevoEvento($_GET['id'], $_POST['direccion'], $_POST['fechaFinal'], $_POST['duracion'], $_POST['descripcion']);
 
-} else{
+// } else{
     $p = new Presupuestos();
-    $v = new CrearEvento();
 
+    if(!$p->verificarPresupuestoAceptado($_GET['id'])){
+        header("Location: presupuestos-aceptados");
+        exit;
+    }
+
+    $v = new CrearEvento();
+    $_SESSION['evento'] = array();
+    $_SESSION['evento']['id_presupuesto'] = $_GET['id'];
+
+    $v->id_presupuesto = $_GET['id'];
     $v->personas = $p->getTotalMenusPresupuesto($_GET['id']);
 
 
     $v->render();
     
-}
+// }
