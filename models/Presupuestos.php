@@ -36,7 +36,7 @@ class Presupuestos extends Model{
         return false;
     }
 
-    public function verificarPrespuestoPendiente($id_presupuesto){
+    public function verificarPresupuestoPendiente($id_presupuesto){
 
         if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
         if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');        
@@ -49,6 +49,23 @@ class Presupuestos extends Model{
         $res = $this->db->fetch();
 
         if($res['aceptado'] == NULL) return true;
+
+        return false;
+    }
+
+    public function verificarPresupuestoAceptado($id_presupuesto){
+
+        if(!ctype_digit("$id_presupuesto")) throw new ValidationException('ID de presupuesto no es un número');
+        if($id_presupuesto < 1) throw new ValidationException('ID de presupuesto no puede ser menor que 1');        
+
+        $this->db->query("SELECT * FROM presupuestos
+        WHERE id_presupuesto = $id_presupuesto
+        LIMIT 1
+        ");
+
+        $res = $this->db->fetch();
+
+        if($res['aceptado'] == 'Y') return true;
 
         return false;
     }
