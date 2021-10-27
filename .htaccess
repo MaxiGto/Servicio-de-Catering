@@ -29,3 +29,7 @@ RewriteRule ^aceptar-presupuesto-([0-9]+)$ controllers/aceptarPresupuesto.php?id
 RewriteRule ^rechazar-presupuesto-([0-9]+)$ controllers/rechazarPresupuesto.php?id=$1
 RewriteRule ^presupuesto-aceptado-([0-9]+)$ controllers/detallePresupuestoAdmin.php?id=$1
 RewriteRule ^crear-evento-([0-9]+)$ controllers/crearEvento.php?id=$1
+RewriteRule ^seleccionar-encargado-([0-9]+)$ controllers/seleccionarEncargado.php?id=$1
+RewriteRule ^seleccionar-mozos-([0-9]+)$ controllers/seleccionarMozos.php?id=$1
+RewriteRule ^resumen-evento-([0-9]+)$ controllers/resumenEvento.php?id=$1
+RewriteRule ^confirmar-evento-([0-9]+)$ controllers/confirmarEvento.php?id=$1
