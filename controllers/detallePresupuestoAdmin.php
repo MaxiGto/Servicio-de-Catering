@@ -13,7 +13,7 @@ $p = new Presupuestos();
 $v = new DatosPresupuestoAdmin();
 
 if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
-// if(!$p->verificarPrespuestoPendiente($_GET['id'])) die('Presupuesto no disponible');
+// if(!$p->verificarPresupuestoPendiente($_GET['id'])) die('Presupuesto no disponible');
 $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
 
 $v->menus = $p->getMenusPresupuesto($_GET['id']);
