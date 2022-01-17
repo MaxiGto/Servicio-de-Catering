@@ -4,6 +4,7 @@ require '../fw/fw.php';
 
 require '../models/Usuarios.php';
 require '../models/Clientes.php';
+require '../models/Empleados.php';
 
 require '../views/Login.php';
 
@@ -20,7 +21,6 @@ if(count($_POST) > 0){
     $u = new Usuarios();
 
     if($u->autenticarUsuario($_POST['user'], $_POST['password'])){
-        session_start();
         $_SESSION['auth'] = true;
         $usuario = $u->getUsuarioPorNombre($_POST['user']);
         $_SESSION['id_usuario'] = $usuario['id_usuario'];
@@ -28,9 +28,18 @@ if(count($_POST) > 0){
         $_SESSION['rol'] = $usuario['rol'];
 
         $c = new Clientes();
-        $cliente = $c->getClientByUserName($_SESSION['usuario']);
-        $_SESSION['id_cliente'] = $cliente['id_cliente'];
+        $e = new Empleados();
 
+        if($c->usuarioEsCliente($_SESSION['id_usuario'])){
+            $cliente = $c->getClientByUserName($_SESSION['usuario']);
+            $_SESSION['id_cliente'] = $cliente['id_cliente'];
+        }
+
+        if($e->usuarioEsEmpleado($_SESSION['id_usuario'])){
+            $_SESSION['legajo'] = $e->getEmpleadoByUserID($_SESSION['id_usuario'])['legajo'];
+            
+        }
+        
         header('Location: principal');
         exit;
     } else {
