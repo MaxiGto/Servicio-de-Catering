@@ -14,29 +14,16 @@
 
     <div class="contenedor">
         <h1>Catering Essen</h1>
-        <h2>Catálogo de menús y servicios disponibles</h2>
 
-        <h3>Listado de menús</h3>
+        <a href="catalogo-servicios-adicionales" class="main-btn secondary">Ver servicios adicionales</a>
+
+        <h3>Catálogo de menús disponibles</h3>
 
         <?php foreach($this->menus as $m) { ?>
 
             <h4> <?= $m['nombre'] ?> </h4>
             <p> <?= $m['descripcion'] ?> </p>
-            <?php if($this->rol == 'admin') { ?>
             <span>$<?= $m['precio'] ?></span>
-            <?php } ?>
-
-        <?php } ?>
-
-        <h3>Listado de servicios adicionales</h3>
-
-        <?php foreach($this->servicios as $s) { ?>
-
-            <h4> <?= $s['nombre'] ?> </h4>
-            <p> <?= $s['descripcion'] ?> </p>
-            <?php if($this->rol == 'admin') { ?>
-            <span>$<?= $s['precio'] ?></span>
-            <?php } ?>
 
         <?php } ?>
         
