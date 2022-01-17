@@ -14,6 +14,12 @@ switch ($_SESSION['rol']) {
     case "cliente":
         $v->rol = 'cliente';
         break;
+    case "encargado":
+        $v->rol = 'encargado';
+        break;
+    case "mozo":
+        $v->rol = 'mozo';
+        break;
     default:
         header("Location: login");
         exit;
