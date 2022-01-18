@@ -77,5 +77,3 @@ class Menus extends Model{
     }
 
 }
-
-class ValidationException extends Exception {}

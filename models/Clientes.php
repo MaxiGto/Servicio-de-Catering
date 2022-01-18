@@ -102,5 +102,21 @@ class Clientes extends Model{
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    public function usuarioEsCliente($id_usuario){
+
+        if(!ctype_digit("$id_usuario")) throw new ValidationException('ID de usuario no es un número');
+        if($id_usuario < 1) throw new ValidationException('ID de usuario no puede ser menor que 1');
+
+        $this->db->query("SELECT * FROM clientes
+        WHERE id_usuario = $id_usuario
+        LIMIT 1
+        ");
+
+        if($this->db->numRows() == 1) return true;
+        
+        return false;
+
+    }
+
     
 }

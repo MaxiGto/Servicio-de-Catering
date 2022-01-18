@@ -263,8 +263,10 @@ class Presupuestos extends Model{
     public function getPresupuestosAceptados(){
 
         $this->db->query("SELECT *
-                        FROM presupuestos
+                        FROM presupuestos p
                         WHERE aceptado = 'Y'
+                        AND id_solicitud NOT IN
+                        (SELECT id_solicitud FROM eventos)
         ");
 
         return $this->db->fetchAll();
@@ -274,11 +276,13 @@ class Presupuestos extends Model{
     public function getCantidadPresupuestosAceptados(){
 
         $this->db->query("SELECT *
-                        FROM presupuestos
+                        FROM presupuestos p
                         WHERE aceptado = 'Y'
+                        AND id_solicitud NOT IN
+                        (SELECT id_solicitud FROM eventos)
         ");
 
-        return $this->db->numRows($this->db->fetch());
+        return $this->db->numRows();
 
     }
 

@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/css/SiteHeader.css">
     <link rel="stylesheet" href="./static/css/General.css">
-    <title>Presupuestos Confirmados</title>
+    <title>Listado de eventos a confirmar</title>
 </head>
 <body>
 
     <?php include '../html/SiteHeader.php' ?>
 
     <div class="contenedor center">
-    <h1>Presupuestos Confirmados</h1>
+    <h1>Eventos a confirmar</h1>
 
-    <h3> <?= $this->cantidad ?> presupuesto/s confirmados </h3>
+    <h3> <?= $this->cantidad ?> evento/s a confirmar </h3>
     
-    <?php foreach($this->presupuestos as $p) { ?>
+    <?php foreach($this->eventos as $e) { ?>
+        
         <hr/>
-        <p> <span class="bold">Fecha:</span> <span class="mr-10"><?= $p['fecha'] ?></span> <a href="presupuesto-aceptado-<?=$p['id_presupuesto']?>" class="main-btn primary mt-0">Ver Detalle</a> <a href="crear-evento-<?=$p['id_presupuesto']?>" class="main-btn secondary mt-0">Crear Evento</a></p> 
+        <p> <span class="bold">Fecha y hora:</span> <span class="mr-10"><?= substr($e['fecha'], 0, 16) ?></span> <a href="evento-empleado-<?=$e['id_evento']?>" class="main-btn secondary mt-0">Ver Detalle</a>
         <hr/>
     <?php } ?>
 

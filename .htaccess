@@ -7,7 +7,8 @@ RewriteRule ^registro-completado$ controllers/registroCompletado.php
 RewriteRule ^login$ controllers/iniciarSesion.php
 RewriteRule ^logout$ controllers/cerrarSesion.php
 RewriteRule ^principal$ controllers/menuPrincipal.php 
-RewriteRule ^catalogo$ controllers/mostrarCatalogo.php 
+RewriteRule ^catalogo$ controllers/mostrarCatalogo.php
+RewriteRule ^catalogo-servicios-adicionales$ controllers/catalogoServiciosAdicionales.php  
 RewriteRule ^menus-presupuesto$ controllers/menusPresupuesto.php 
 RewriteRule ^servicios-presupuesto$ controllers/serviciosPresupuesto.php
 RewriteRule ^resumen$ controllers/verResumen.php
@@ -15,6 +16,8 @@ RewriteRule ^solicitudes-pendientes$ controllers/verSolicitudesPendientes.php
 RewriteRule ^presupuestos-recibidos$ controllers/verPresupuestosRecibidos.php
 RewriteRule ^actualizar-precio-menu$ controllers/actualizarPrecioMenu.php
 RewriteRule ^presupuestos-aceptados$ controllers/presupuestosConfirmados.php
+RewriteRule ^eventos-empleados$ controllers/eventosEmpleados.php
+RewriteRule ^eventos-confirmados-empleados$ controllers/eventosConfirmadosEmpleado.php
 
 
 RewriteRule ^cliente-([0-9]+)$ controllers/detalleCliente.php?id=$1 
@@ -33,3 +36,7 @@ RewriteRule ^seleccionar-encargado-([0-9]+)$ controllers/seleccionarEncargado.ph
 RewriteRule ^seleccionar-mozos-([0-9]+)$ controllers/seleccionarMozos.php?id=$1
 RewriteRule ^resumen-evento-([0-9]+)$ controllers/resumenEvento.php?id=$1
 RewriteRule ^confirmar-evento-([0-9]+)$ controllers/confirmarEvento.php?id=$1
+RewriteRule ^evento-empleado-([0-9]+)$ controllers/detalleEventoEmpleado.php?id=$1
+RewriteRule ^confirmar-evento-empleado-([0-9]+)$ controllers/confirmarEventoEmpleado.php?id=$1
+RewriteRule ^rechazar-evento-empleado-([0-9]+)$ controllers/rechazarEventoEmpleado.php?id=$1
+RewriteRule ^evento-confirmado-empleado-([0-9]+)$ controllers/eventoConfirmadoEmpleado.php?id=$1
