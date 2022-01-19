@@ -16,6 +16,7 @@ if(isset($_POST['servicios'])){
 
     $v = new ServiciosPresupuesto();
     $v->repetido = false;
+    $v->sinServicios = false;
 
     foreach($_SESSION['servicios'] as $e){
         
@@ -32,6 +33,12 @@ if(isset($_POST['servicios'])){
     } 
 
     $s = new Servicios();
+
+    foreach($_SESSION['servicios'] as $e){
+        
+        $v->serviciosSeleccionados[] = $s->getServicioById($e);
+
+    }
     
     $v->servicios = $s->getTodos();
     $v->render();

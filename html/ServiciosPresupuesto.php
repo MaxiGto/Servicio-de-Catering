@@ -15,24 +15,37 @@
     <div class="contenedor">
     <h1>Selección de servicios</h1>
     <div class="contenido">
-    <h3>Seleccione los servicios adicionales que desea para su evento</h3>
+        <h3>Seleccione los servicios adicionales que desea para su evento</h3>
 
-    <form action="" method="POST">
+        <form action="" method="POST">
 
-        <select name="servicios" id="servicios" class="input-style">
-        <?php foreach($this->servicios as $s) { ?>
+            <select name="servicios" id="servicios" class="input-style">
+            <?php foreach($this->servicios as $s) { ?>
 
-        <option value="<?= $s['id_servicio'] ?>"> <?= $s['nombre'] ?> </option>
+            <option value="<?= $s['id_servicio'] ?>"> <?= $s['nombre'] ?> </option>
 
-        <?php } ?>
-        </select>
+            <?php } ?>
+            </select>
 
-        <input type="submit" value="Agregar">
+            <input type="submit" value="Agregar">
 
-    </form>
+        </form>
 
         <?php if($this->agregado) $this->mostrarMensaje('Servicio agregado correctamente') ?>
         <?php if($this->repetido) $this->mostrarMensaje('No puede agregar un mismo servicio adicional más de una vez') ?>
+
+        <h3>Servicios adicionales seleccionados</h3>
+
+        <?php if($this->sinServicios){
+            $this->mostrarMensaje('Aún no ha agregado ningun servicio adicional');
+        } else {
+            foreach($this->serviciosSeleccionados as $i => $s) {
+
+                echo $i+1 . ". " . $s['nombre'] . "<br/>";
+    
+            }
+        } ?>
+
 
         <div>
         <a href="menus-presupuesto" class="main-btn secondary">Volver</a>

@@ -27,4 +27,17 @@ class Servicios extends Model{
 
     }
 
+    public function getServicioById($id_servicio){
+
+        if(!ctype_digit("$id_servicio")) throw new ValidationException('ID servicio no es un número');
+        if($id_servicio < 1) throw new ValidationException('ID servicio menor que 1');
+
+        $this->db->query("SELECT * FROM servicios_adicionales
+                            WHERE id_servicio = $id_servicio
+                            LIMIT 1
+            ");
+
+        return $this->db->fetch();
+    }
+
 }
