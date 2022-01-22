@@ -8,7 +8,8 @@ RewriteRule ^login$ controllers/iniciarSesion.php
 RewriteRule ^logout$ controllers/cerrarSesion.php
 RewriteRule ^principal$ controllers/menuPrincipal.php 
 RewriteRule ^catalogo$ controllers/mostrarCatalogo.php
-RewriteRule ^catalogo-servicios-adicionales$ controllers/catalogoServiciosAdicionales.php  
+RewriteRule ^catalogo-servicios-adicionales$ controllers/catalogoServiciosAdicionales.php
+RewriteRule ^fecha-evento$ controllers/seleccionarFechaEvento.php 
 RewriteRule ^menus-presupuesto$ controllers/menusPresupuesto.php 
 RewriteRule ^servicios-presupuesto$ controllers/serviciosPresupuesto.php
 RewriteRule ^resumen$ controllers/verResumen.php
