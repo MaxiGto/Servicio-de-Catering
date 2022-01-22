@@ -15,34 +15,40 @@
     <div class="contenedor center">
         <h1>Resumen de presupuesto</h1>
 
+        <p><span class="bold">Fecha:</span> <?= $this->fechaEvento ?></p>
+        <p><span class="bold">Turno:</span> <?= $this->turno . " (" . $this->horario  . ")"?></p>
+
         <h3>Menús solicitados</h3>
 
         <table class="center-table">
-        <th>Cantidad</th><th>Nombre</th>
+        <th>Cantidad</th><th>Nombre</th><th>Precio Unitario</th><th>Total</th>
             <?php 
-            
-            $total = 0;
-
             foreach($this->menus as $m){ ?>
-                <tr><td><?=$m['cantidad']?></td> <td><?=$m['nombre']?></td></tr>
-                <?php $total = $total + $m['cantidad'];
+                <tr><td><?=$m['cantidad']?></td> <td><?=$m['nombre']?></td><td><?="$" . $m['precio']?><td><?="$" . ($m['cantidad'] * $m['precio'])?></td></tr>
+                <?php $this->cantidadMenus = $this->cantidadMenus + $m['cantidad'];
+                $this->totalPresupuesto = $this->totalPresupuesto + ($m['cantidad'] * $m['precio']);
             } ?>
         </table>
 
-        <p><span class="bold">Total:</span> <?= $total ?> menús</p>
+        <p><span class="bold">Total:</span> <?= $this->cantidadMenus ?> menús</p>
         
         <?php if(!$this->sinServicios) { ?>
 
         <h3>Servicios adicionales solicitados</h3>
 
         <table class="center-table">
-        <th>Nombre</th>
+        <th>Cantidad</th><th>Nombre</th><th>Precio Unitario</th><th>Total</th>
             <?php foreach($this->servicios as $s){ ?>
-                <tr><td><?=$s['nombre']?></td></tr>
+                <tr><td><?=$this->cantidadMenus?></td><td><?=$s['nombre']?></td><td><?="$" . $s['precio']?><td><?="$" . ($this->cantidadMenus * $s['precio'])?></td></tr>
+                <?php $this->totalPresupuesto = $this->totalPresupuesto + ($this->cantidadMenus * $s['precio']); ?>
             <?php } ?>
         </table>
 
         <?php } ?>
+
+        <p>Recuerde que se cobra 1 servicio adicional por cada menú solicitado</p>
+
+        <p class="highlight">Total: <span class="bold">$<?= $this->totalPresupuesto ?></span></p>
 
         <form action="" method="POST">
             

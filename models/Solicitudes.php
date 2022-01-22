@@ -2,7 +2,10 @@
 
 class Solicitudes extends Model{
 
-    public function saveSolicitud($comentario, $id_cliente, $menus, $servicios){
+    public function saveSolicitud($fechaEvento, $id_turno, $comentario, $id_cliente, $menus, $servicios){
+
+        if(!ctype_digit("$id_turno")) throw new ValidationException('ID de turno no es un número');
+        if($id_turno < 1) throw new ValidationException('ID de turno no puede ser menor que 1');
 
         if(strlen($comentario) > 300) throw new ValidationException('Comentario muy largo');
         $comentario = $this->db->escape($comentario);
@@ -23,8 +26,8 @@ class Solicitudes extends Model{
             if($cantidad < 1) throw new ValidationException('Cantidad no puede ser menor que 1');
         }
 
-        $this->db->query("INSERT INTO solicitudes(fecha, comentario, id_cliente)
-                        VALUES (NOW(), '$comentario', $id_cliente)
+        $this->db->query("INSERT INTO solicitudes(fecha, fecha_evento, turno, comentario, id_cliente)
+                        VALUES (NOW(), '$fechaEvento', $id_turno, '$comentario', $id_cliente)
         ");
 
         $lastID = $this->db->insertedID();
