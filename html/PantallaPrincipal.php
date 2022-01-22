@@ -19,7 +19,7 @@
             <div class="contenido center">
                 <a href="catalogo" class="main-btn menu-btn secondary">Ver catálogo de menús y servicios adicionales</a>
                 <div>
-                <a href="menus-presupuesto" class="main-btn menu-btn secondary">Nueva solicitud de presupuesto</a>
+                <a href="fecha-evento" class="main-btn menu-btn secondary">Nueva solicitud de presupuesto</a>
                 <a href="presupuestos-recibidos" class="main-btn menu-btn secondary">Ver y confirmar presupuestos</a>
                 </div>
             </div>
