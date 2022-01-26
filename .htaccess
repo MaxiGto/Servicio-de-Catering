@@ -23,6 +23,7 @@ RewriteRule ^eventos-confirmados-empleados$ controllers/eventosConfirmadosEmplea
 
 RewriteRule ^cliente-([0-9]+)$ controllers/detalleCliente.php?id=$1 
 RewriteRule ^solicitud-([0-9]+)$ controllers/detalleSolicitud.php?id=$1
+RewriteRule ^agregar-horas-([0-9]+)$ controllers/agregarHorasAdicionales.php?id=$1
 RewriteRule ^presupuesto-([0-9]+)$ controllers/detallePresupuesto.php?id=$1
 RewriteRule ^agregar-menus-([0-9]+)$ controllers/nuevoMenuSolicitud.php?id=$1
 RewriteRule ^agregar-servicios-([0-9]+)$ controllers/nuevoServicioSolicitud.php?id=$1

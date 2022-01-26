@@ -20,7 +20,7 @@ $monto = $s->getPrecioTotalMenusSolicitud($_GET['id']);
 $adicional = $s -> getPrecioTotalServiciosSolicitud($_GET['id']);
 if($adicional['total_servicios'] == NULL) $adicional['total_servicios'] = 0;
 
-$p->savePresupuesto($monto['total_menus'], $adicional['total_servicios'], $_GET['id']);
+$p->savePresupuesto($monto['total_menus'], $adicional['total_servicios'], $_POST['horasAdicionales'], $_POST['precioHorasAd'], $_POST['observaciones'], $_GET['id']);
 
 $v = new PresupuestoEnviado();
 

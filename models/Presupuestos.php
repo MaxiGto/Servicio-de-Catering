@@ -2,7 +2,7 @@
 
 class Presupuestos extends Model{
 
-    public function savePresupuesto($monto, $adicional, $id_solicitud){
+    public function savePresupuesto($monto, $adicional, $horasAd, $precioHorasAd, $observaciones, $id_solicitud){
 
         if(!is_numeric($monto)) throw new ValidationException('Monto no es un número');
         if($monto <= 0) throw new ValidationException('El monto debe ser mayor a 0');
@@ -10,11 +10,21 @@ class Presupuestos extends Model{
         if(!is_numeric($adicional)) throw new ValidationException('Monto adicional no es un número');
         if($adicional < 0) throw new ValidationException('El monto adicional debe ser mayor o igual a 0');
 
+        if(!ctype_digit("$horasAd")) throw new ValidationException('Cantidad de horas no es un número');
+        if($horasAd < 0) throw new ValidationException('Cantidad de horas no puede ser menor que 0'); 
+        
+        if(!is_numeric($precioHorasAd)) throw new ValidationException('Monto hora adicional no es un número');
+        if($precioHorasAd < 0) throw new ValidationException('El monto hora adicional debe ser mayor o igual a 0');
+
+        $observaciones = substr($observaciones, 0, 300);
+        $observaciones = $this->db->escape($observaciones);
+        $observaciones = htmlentities($observaciones);
+
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("INSERT INTO presupuestos(fecha, monto, monto_adicional, id_solicitud)
-                        VALUES (NOW(), $monto, $adicional, $id_solicitud)
+        $this->db->query("INSERT INTO presupuestos(fecha, monto, monto_adicional, horasAd, precio_horasAd, observaciones, id_solicitud)
+                        VALUES (NOW(), $monto, $adicional, $horasAd, $precioHorasAd, '$observaciones', $id_solicitud)
 
         ");
     }

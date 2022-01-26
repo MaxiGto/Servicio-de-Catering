@@ -32,38 +32,65 @@
     <h3>Servicios adicionales solicitados</h3>
     <?php if($this->tieneServicios){ ?>
         <table class="center-table">
-        <th>Nombre</th><th>Precio unitario</th><th>Total</th>
+        <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
         <?php foreach($this->servicios as $s) { ?>
-        <tr> <td> <?=$s['nombre']?> </td> <td> $<?=$s['precio']?> </td> <td> $<?=$s['total']?> </td> </tr>
+        <tr> <td> <?=$this->cantidadMenus['total']?> </td> <td> <?=$s['nombre']?> </td> <td> $<?=$s['precio']?> </td> <td> $<?=$s['total']?> </td> </tr>
         <?php } ?>
         </table>
 
-        <p><span class="bold">Total servicios: </span>$<?=$this->totalServicios['total_servicios']?></p>
+        <p><span class="bold">Total servicios: </span>$<?=$this->totalServicios?></p>
 
-        <p class="highlight">Total Presupuesto: $<?= $this->totalMenus['total_menus'] + $this->totalServicios['total_servicios'] ?></p>
+        
     <?php } else {
         $this->mostrarMensaje('No se solicitaron servicios adicionales'); ?>
-        <p class="highlight">Total Presupuesto: $<?= $this->totalMenus['total_menus'] ?></p>
     <?php } ?>
-        
 
-    <p><span class="bold">Comentario: </span><?=$this->solicitud['comentario']?></p>
+    <?php if($this->horasAdicionales){ ?>
+        <h3>Horas adicionales</h3>
+        <table class="center-table">
+        <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
+        <tr> <td> <?=$this->cantidadHoras?> </td> <td> Horas adicionales </td> <td> $<?=$this->precioHora?> </td> <td> $<?=$this->cantidadHoras * $this->precioHora?> </td> </tr>
+        </table>
+    <?php } ?>
+
+    <p class="highlight">Total Presupuesto: $<?= $this->totalMenus['total_menus'] + $this->totalServicios + $this->cantidadHoras * $this->precioHora?></p>
+
+    <?php if($this->comentario == "") { ?>
+         <p><span class="bold">Comentario: </span>El cliente no hizo ningún comentario </p>
+    <?php } else { ?>
+        <p><span class="bold">Comentario: </span><?=$this->solicitud['comentario']?></p>
+    <?php } ?>
+
+    <a href="agregar-horas-<?=$this->solicitud['id_solicitud']?>" class="main-btn secondary">Agregar horas adicionales</a>
+
+    <form action="confirmar-presupuesto-<?=$this->solicitud['id_solicitud']?>" method="POST">
+            
+        <label for="observaciones" class="mt-10">Aquí puede escribir observaciones para el cliente: </label>
+        <div>
+            <textarea name="observaciones" id="comentario" cols="50" rows="10"><?php if($this->horasAdicionales) { ?><?=$this->cantidadHoras?> horas adicionales agregadas por $<?=$this->cantidadHoras * $this->precioHora?><?php } ?>
+            </textarea>
+        </div>
+
+        <input type="submit" value="Confirmar y enviar presupuesto" class="main-btn primary">
+        <div>
+            <a href="solicitudes-pendientes" class="main-btn secondary">Volver</a>
+            <a href="principal" class="main-btn secondary">Menu Principal</a>
+        </div>
+
+        <div><input type="hidden" id="horasAdicionales" value="<?=$this->cantidadHoras?>" name="horasAdicionales"></div>
+        <div><input type="hidden" id="precioHorasAd" value="<?=$this->precioHora?>" name="precioHorasAd"></div>
+
+    </form>
+    
+    <!-- <div>
+    <a href="agregar-menus-$this->solicitud['id_solicitud']" class="main-btn secondary">Agregar Menus</a>
+    <a href="quitar-menus-$this->solicitud['id_solicitud']" class="main-btn tertiary">Quitar Menus</a>
+    </div>
 
     <div>
-    <a href="agregar-menus-<?=$this->solicitud['id_solicitud']?>" class="main-btn secondary">Agregar Menus</a>
-    <a href="quitar-menus-<?=$this->solicitud['id_solicitud']?>" class="main-btn tertiary">Quitar Menus</a>
-    </div>
-
-    <div>
-        <a href="agregar-servicios-<?=$this->solicitud['id_solicitud']?>" class="main-btn secondary">Agregar Servicios</a>
-        <a href="quitar-servicios-<?=$this->solicitud['id_solicitud']?>" class="main-btn tertiary">Quitar Servicios</a>
-    </div>
-    <div>
-        <a href="confirmar-presupuesto-<?=$this->solicitud['id_solicitud']?>" class="main-btn primary">Confirmar y enviar presupuesto</a>
-    </div>
-    <div>
-        <a href="principal" class="main-btn primary">Menu Principal</a>
-    </div>
+        <a href="agregar-servicios-$this->solicitud['id_solicitud']" class="main-btn secondary">Agregar Servicios</a>
+        <a href="quitar-servicios-$this->solicitud['id_solicitud']" class="main-btn tertiary">Quitar Servicios</a>
+    </div> -->
     </div>
 </body>
 </html>
