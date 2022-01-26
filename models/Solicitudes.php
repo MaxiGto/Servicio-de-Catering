@@ -54,9 +54,10 @@ class Solicitudes extends Model{
 
         $m = new Menus();
         if(!$m->verificarMenu($id_menu)) throw new ValidationException('ID de menú inválido');
+        $precio = $m->getMenuByID($id_menu)['precio'];
 
-        $this->db->query("INSERT INTO menus_evento (id_solicitud, id_menu, cantidad)
-                            VALUES ($id_solicitud, $id_menu, $cantidad)
+        $this->db->query("INSERT INTO menus_evento (id_solicitud, id_menu, cantidad, precio)
+                            VALUES ($id_solicitud, $id_menu, $cantidad, $precio)
         ");
 
     }
@@ -80,8 +81,9 @@ class Solicitudes extends Model{
         }
 
         foreach($menus as $id => $cantidad){
-            $this->db->query("INSERT INTO menus_evento (id_solicitud, id_menu, cantidad)
-                            VALUES ($id_solicitud, $id, $cantidad)
+            $precio = $m->getMenuByID($id)['precio'];
+            $this->db->query("INSERT INTO menus_evento (id_solicitud, id_menu, cantidad, precio)
+                            VALUES ($id_solicitud, $id, $cantidad, $precio)
         ");
 
         }
@@ -144,7 +146,7 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT m.id_menu, m.nombre , m.precio, me.cantidad, (m.precio * me.cantidad) as total FROM solicitudes sol
+        $this->db->query("SELECT m.id_menu, m.nombre , me.precio, me.cantidad, (me.precio * me.cantidad) as total FROM solicitudes sol
                         LEFT JOIN menus_evento me on me.id_solicitud = sol.id_solicitud
                         LEFT JOIN menus m on m.id_menu = me.id_menu
                         WHERE sol.id_solicitud = $id_solicitud
@@ -159,9 +161,8 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT sol.id_solicitud, SUM(m.precio * me.cantidad) as 'total_menus' FROM solicitudes sol
+        $this->db->query("SELECT sol.id_solicitud, SUM(me.precio * me.cantidad) as 'total_menus' FROM solicitudes sol
                         LEFT JOIN menus_evento me on me.id_solicitud = sol.id_solicitud
-                        LEFT JOIN menus m on m.id_menu = me.id_menu
                         WHERE sol.id_solicitud = $id_solicitud
                         GROUP BY sol.id_solicitud
                         LIMIT 1
@@ -243,8 +244,11 @@ class Solicitudes extends Model{
 
         $cantidad = $res['total'];
 
-        $this->db->query("INSERT INTO servicios_evento (id_solicitud, id_servicio, cantidad)
-                            VALUES ($id_solicitud, $id_servicio, $cantidad)
+        $s = new Servicios();
+        $precio = $s->getServicioById($id_servicio)['precio'];
+
+        $this->db->query("INSERT INTO servicios_evento (id_solicitud, id_servicio, cantidad, precio)
+                            VALUES ($id_solicitud, $id_servicio, $cantidad, $precio)
         ");
 
     }
@@ -263,9 +267,12 @@ class Solicitudes extends Model{
         if(!ctype_digit("$total")) throw new ValidationException('Total no es un número');
         if($total < 1) throw new ValidationException('Total no puede ser menor que 1');
 
+        $s = new Servicios();
+
         foreach($servicios as $id){
-            $this->db->query("INSERT INTO servicios_evento (id_solicitud, id_servicio, cantidad)
-                            VALUES ($id_solicitud, $id, $total)
+            $precio = $s->getServicioById($id)['precio'];
+            $this->db->query("INSERT INTO servicios_evento (id_solicitud, id_servicio, cantidad, precio)
+                            VALUES ($id_solicitud, $id, $total, $precio)
         ");
 
         }
@@ -276,7 +283,7 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT s.id_servicio, s.nombre , s.precio, se.cantidad, (s.precio * se.cantidad) as total FROM solicitudes sol
+        $this->db->query("SELECT s.id_servicio, s.nombre , se.precio, se.cantidad, (se.precio * se.cantidad) as total FROM solicitudes sol
                         LEFT JOIN servicios_evento se on se.id_solicitud = sol.id_solicitud
                         LEFT JOIN servicios_adicionales s on s.id_servicio = se.id_servicio
                         WHERE sol.id_solicitud = $id_solicitud
@@ -307,9 +314,8 @@ class Solicitudes extends Model{
         if(!ctype_digit("$id_solicitud")) throw new ValidationException('ID de solicitud no es un número');
         if($id_solicitud < 1) throw new ValidationException('ID de solicitud no puede ser menor que 1');
 
-        $this->db->query("SELECT sol.id_solicitud, SUM(s.precio * se.cantidad) as 'total_servicios' FROM solicitudes sol
+        $this->db->query("SELECT sol.id_solicitud, SUM(se.precio * se.cantidad) as 'total_servicios' FROM solicitudes sol
                         LEFT JOIN servicios_evento se on se.id_solicitud = sol.id_solicitud
-                        LEFT JOIN servicios_adicionales s on s.id_servicio = se.id_servicio
                         WHERE sol.id_solicitud = $id_solicitud
                         GROUP BY sol.id_solicitud
                         LIMIT 1
