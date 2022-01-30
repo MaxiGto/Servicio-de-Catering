@@ -33,18 +33,31 @@
 
         <?php if($this->tieneServicios){ ?>
             <table class="center-table">
-            <th>Nombre</th><th>Precio unitario</th><th>Total</th>
+            <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
             <?php foreach($this->servicios as $s) { ?>
-            <tr><td><?=$s['nombre']?></td><td>$<?=$s['precio']?></td><td>$<?=$s['total']?></td></tr>
+            <tr><td><?=$this->cantidadMenus['total']?></td><td><?=$s['nombre']?></td><td>$<?=$s['precio']?></td><td>$<?=$s['total']?></td></tr>
             <?php } ?>
             </table>
             <p><span class="bold">Total servicios:</span> $<?=$this->totalServicios['total_servicios']?> (<?=$this->cantidadMenus['total']?> personas)</p>
 
-            <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus['total_menus'] + $this->totalServicios['total_servicios'] ?></span></p>
         <?php } else {
             $this->mostrarMensaje('No se solicitaron servicios adicionales'); ?>
-            <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus['total_menus'] ?></span></p>
         <?php } ?>
+
+        <?php if($this->tieneHorasAd){ ?>
+            <table class="center-table">
+            <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
+            <tr><td><?=$this->cantidadHoras?></td><td>Horas adicionales</td><td>$<?=$this->precioHora?></td><td>$<?=$this->cantidadHoras * $this->precioHora?></td></tr>
+            </table>
+        <?php } ?>
+
+        <?php if($this->presupuesto['observaciones'] == "") { ?>
+            <p><span class="bold">Observaciones: </span>No hay observaciones </p>
+        <?php } else { ?>
+            <p><span class="bold">Observaciones: </span><?=$this->presupuesto['observaciones']?></p>
+        <?php } ?>
+
+        <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus['total_menus'] + $this->totalServicios['total_servicios'] + $this->cantidadHoras * $this->precioHora ?></span></p>
 
         <div>
             <a href="presupuestos-aceptados" class="main-btn primary">Volver</a>

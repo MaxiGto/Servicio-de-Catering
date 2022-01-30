@@ -36,7 +36,8 @@
             <a href="catalogo" class="main-btn menu-btn secondary">Ver catálogo de menús y servicios adicionales</a>
             <a href="actualizar-precio-menu" class="main-btn menu-btn secondary">Actualizar precios de menús</a>
             </div>
-            <a href="solicitudes-pendientes" class="main-btn menu-btn secondary">Ver solicitudes pendientes</a>
+            <a href="solicitudes-pendientes" class="main-btn menu-btn secondary">Ver solicitudes pendientes de presupuestar</a>
+            <a href="presupuestos-a-confirmar" class="main-btn menu-btn secondary">Ver presupuestos pendientes de confirmación</a>
             <a href="presupuestos-aceptados" class="main-btn menu-btn secondary">Ver presupuestos aceptados</a>
         </div>
     </div>

@@ -28,4 +28,10 @@ if($p->presupuestoTieneServicios($_GET['id'])){
     $v->tieneServicios = false;
 }
 
+if($v->presupuesto['horasAd'] > 0){
+    $v->tieneHorasAd = true;
+    $v->cantidadHoras = $v->presupuesto['horasAd'];
+    $v->precioHora = $v->presupuesto['precio_horasAd'];
+}
+
 $v->render();

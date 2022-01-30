@@ -269,6 +269,30 @@ class Presupuestos extends Model{
         ");
 
     }
+    
+    public function getCantidadPresupuestosAConfirmar(){
+
+        $this->db->query("SELECT *
+                        FROM presupuestos p
+                        WHERE aceptado is NULL
+        ");
+
+        return $this->db->numRows();
+
+    }
+
+    public function getPresupuestosAConfirmar(){
+
+        $this->db->query("SELECT p.id_presupuesto, p.fecha, p.aceptado, p.id_solicitud, s.id_cliente
+                        FROM presupuestos p
+                        JOIN solicitudes s
+                        ON p.id_solicitud = s.id_solicitud
+                        WHERE p.aceptado is NULL
+        ");
+
+        return $this->db->fetchAll();
+
+    }
 
     public function getPresupuestosAceptados(){
 
@@ -300,6 +324,21 @@ class Presupuestos extends Model{
 
         $this->db->query("SELECT id_solicitud
                         FROM presupuestos p 
+                        WHERE p.id_presupuesto = $id_presupuesto
+                        LIMIT 1
+
+        ");
+
+        return $this->db->fetch();
+
+    }
+
+    public function getSolicitudPresupuesto($id_presupuesto){
+
+        $this->db->query("SELECT *
+                        FROM presupuestos p
+                        JOIN solicitudes s
+                        ON p.id_solicitud = s.id_solicitud
                         WHERE p.id_presupuesto = $id_presupuesto
                         LIMIT 1
 
