@@ -25,7 +25,7 @@
     <hr/>
     <p><span class="bold">Teléfono: </span> <?= $this->cliente['telefono'] ?> </p>
 
-    <a href="solicitudes-pendientes" class="main-btn primary center">Volver</a>
+    <a href="javascript:history.go(-1)" class="main-btn primary center">Volver</a>
 
     </div>
 </body>
