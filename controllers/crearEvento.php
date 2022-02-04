@@ -4,7 +4,8 @@ require '../fw/fw.php';
 require '../fw/AuthAdmin.php';
 
 require '../models/Presupuestos.php';
-require '../models/Eventos.php';
+require '../models/Clientes.php';
+require '../models/Turnos.php';
 
 require '../views/CrearEvento.php';
 
@@ -23,6 +24,8 @@ if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 
 // } else{
     $p = new Presupuestos();
+    $c = new Clientes();
+    $t = new Turnos();
 
     if(!$p->verificarPresupuestoAceptado($_GET['id'])){
         header("Location: presupuestos-aceptados");
@@ -35,7 +38,11 @@ if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 
     $v->id_presupuesto = $_GET['id'];
     $v->personas = $p->getTotalMenusPresupuesto($_GET['id']);
+    $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
 
+    $v->solicitud = $p->getSolicitudPresupuesto($_GET['id']);
+    $v->cliente = $c->getClientByID($v->solicitud['id_cliente']);
+    $v->turno = $t->getTurnoByID($v->solicitud['turno']);
 
     $v->render();
     

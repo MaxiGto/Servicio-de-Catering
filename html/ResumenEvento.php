@@ -18,11 +18,13 @@
 
         <h3>Información general</h3>
         
-        <p><span class="bold">Encargado/a:</span> <?=$this->encargado?></p>
-        <p><span class="bold">Dirección:</span> <?=$this->direccion?></p>
-        <p><span class="bold">Fecha y hora:</span> <?=$this->fechaHora?> hs</p>
-        <p><span class="bold">Duración:</span> <?=$this->duracion?> hs</p>
-        <p><span class="bold">Participantes:</span> <?=$this->participantes?> personas</p>
+        <p>
+        <span class="bold">Encargado/a:</span> <?=$this->encargado?> -
+        <span class="bold">Dirección:</span> <?=$this->direccion?> -
+        <span class="bold">Fecha:</span> <?=$this->fecha?> -
+        <span class="bold">Turno:</span> <?=$this->turno['nombre']?> (<?=$this->turno['horario']?>) -
+        <span class="bold">Participantes:</span> <?=$this->participantes?> personas
+        </p>
 
         <h3>Menús solicitados</h3>
 
@@ -44,10 +46,15 @@
             </table>
             <p><span class="bold">Total servicios:</span> $<?=$this->totalServicios?> (<?=$this->participantes?> personas)</p>
 
-            <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus + $this->totalServicios ?></span></p>
         <?php } else {
             $this->mostrarMensaje('No se solicitaron servicios adicionales'); ?>
-            <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus ?></span></p>
+        <?php } ?>
+
+        <?php if($this->tieneHorasAd){ ?>
+            <table class="center-table">
+            <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
+            <tr><td><?=$this->cantidadHoras?></td><td>Horas adicionales</td><td>$<?=$this->precioHora?></td><td>$<?=$this->cantidadHoras * $this->precioHora?></td></tr>
+            </table>
         <?php } ?>
 
         <h3>Lista de mozos seleccionados</h3>
@@ -56,6 +63,12 @@
         <ul>
             <li><?=$mo?></li>
         </ul>
+        <?php } ?>
+
+        <?php if($this->observaciones == "") { ?>
+            <p><span class="bold">Observaciones: </span>No hay observaciones </p>
+        <?php } else { ?>
+            <p><span class="bold">Observaciones: </span><?=$this->observaciones?></p>
         <?php } ?>
 
         <div>

@@ -16,10 +16,8 @@ if(isset($_SESSION['evento'])){
     if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
     if(!$p->verificarPresupuestoAceptado($_GET['id'])) die('ID de presupuesto incorrecto');
 
-    $id_evento = $e->saveNuevoEvento($_GET['id'], 
-                        $_SESSION['evento']['direccion'], 
-                        $_SESSION['evento']['fechaFinal'], 
-                        $_SESSION['evento']['duracion'], 
+    $id_evento = $e->saveNuevoEvento($_GET['id'],
+                        $_SESSION['evento']['horasAd'],
                         $_SESSION['evento']['encargado'],
                         $_SESSION['evento']['descripcion']
     );

@@ -10,7 +10,7 @@ require '../views/SeleccionarEncargado.php';
 
 if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 
-if(isset($_POST['direccion'])){
+if(isset($_SESSION['evento'])){
     $p = new Presupuestos();
     $e = new Empleados();
     $v = new SeleccionarEncargado();
@@ -21,12 +21,7 @@ if(isset($_POST['direccion'])){
     $v->encargados = $e->getEncargados();
     $v->id_presupuesto =  $_SESSION['evento']['id_presupuesto'];
 
-    $_SESSION['evento']['direccion'] = $_POST['direccion'];
-    $_SESSION['evento']['duracion'] = $_POST['duracion'];
-    $_SESSION['evento']['descripcion'] = $_POST['descripcion'];
-    $_SESSION['evento']['fechaFinal'] = $_POST['fechaFinal'];
-
-    var_dump($_SESSION['evento']);
+    $_SESSION['evento']['descripcion'] = $_POST['descripcion'] ? $_POST['descripcion'] : '';
 
     $v->render();
     } else {

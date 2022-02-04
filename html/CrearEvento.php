@@ -16,32 +16,43 @@
         <h1>Creación de evento</h1>
 
         <div class="contenido">
-            <p>Cantidad de personas: <?= $this->personas['total'] ?></p>
+            <h3>Datos del cliente</h3>
+            <p>
+                <span class="bold">Nombre: </span><?=$this->cliente['nombre'] . " " . $this->cliente['apellido']?> - 
+                <span class="bold">Usuario: </span><?=$this->cliente['usuario']?> -
+                <span class="bold">Email: </span><?=$this->cliente['email']?> - 
+                <span class="bold">Teléfono: </span><?=$this->cliente['telefono']?>
+            </p>
+            
+            <h3>Información del evento</h3>
+            <p>
+                <span class="bold">Fecha:</span> <?=$this->solicitud['fecha_evento']?> -
+                <span class="bold">Turno:</span> <?= $this->turno['nombre'] ?> - 
+                <span class="bold">Cantidad de personas:</span> <?= $this->personas['total'] ?> - 
+                <span class="bold">Dirección:</span> <?= $this->solicitud['direccion'] ?> - 
+                <?php if(trim($this->solicitud['comentario']) != ""){ ?>
+                    <span class="bold">Comentarios del cliente: </span> <?= $this->solicitud['comentario'] ?> -
+                <?php } else { ?>
+                    <span class="bold">Comentarios del cliente: </span> No se hicieron comentarios -
+                <?php } ?>
+                <?php if(trim($this->solicitud['observaciones']) != ""){ ?>
+                    <span class="bold">Observaciones del administrador: </span> <?= $this->solicitud['observaciones'] ?>
+                <?php } else { ?>
+                    <span class="bold">Observaciones del administrador: </span> No se hicieron observaciones 
+                <?php } ?>
+            </p>
+
 
             <form action="seleccionar-encargado-<?=$this->id_presupuesto?>" method="POST" id="form">
 
-                <div>
-                    <label for="direccion">Dirección: </label>
-                    <input type="text" id="direccion" name="direccion">
-                </div>
-
-                <div>
-                    <label for="fecha">Fecha y Hora: </label>
-                    <input type="datetime-local" id="fecha" name="fecha">
-                </div>
-
-                <div>
-                    <label for="duracion">Duración (hs): </label>
-                    <input type="number" id="duracion" step="0.1" name="duracion">
-                </div>
-
-
-                <div><label for="descripcion">Descripción: </label></div>
+                <div><label for="descripcion">Añada una descripción para el evento: </label></div>
                 <div><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea></div>
 
-                <div><input type="hidden" id="fecha-final" value="" name="fechaFinal"></div>
 
-                <div><input type="submit" value="Continuar" class="main-btn primary"
+                
+                <div>
+                <a href="presupuestos-aceptados" class="main-btn secondary">Volver</a>
+                <input type="submit" value="Continuar" class="main-btn primary"
                 id="btnContinuar"></div>
             </form>
         </div>

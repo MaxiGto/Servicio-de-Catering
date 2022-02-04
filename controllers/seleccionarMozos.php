@@ -23,9 +23,6 @@ if(isset($_POST['encargado'])){
 
     $_SESSION['evento']['encargado'] = $_POST['encargado'];
 
-    var_dump($_SESSION['evento']);
-    var_dump($_POST['encargado']);
-
     $v->render();
     } else {
     header("Location: presupuestos-aceptados");
