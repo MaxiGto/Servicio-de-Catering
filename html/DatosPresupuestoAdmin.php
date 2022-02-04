@@ -60,7 +60,7 @@
         <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus['total_menus'] + $this->totalServicios['total_servicios'] + $this->cantidadHoras * $this->precioHora ?></span></p>
 
         <div>
-            <a href="presupuestos-aceptados" class="main-btn primary">Volver</a>
+            <a href="javascript:history.go(-1)" class="main-btn primary">Volver</a>
         </div>
     </div>
 </body>
