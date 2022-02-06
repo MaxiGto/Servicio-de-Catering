@@ -20,7 +20,7 @@
     <?php foreach($this->eventos as $e) { ?>
         
         <hr/>
-        <p> <span class="bold">Fecha y hora:</span> <span class="mr-10"><?= substr($e['fecha'], 0, 16) ?></span> <a href="evento-empleado-<?=$e['id_evento']?>" class="main-btn secondary mt-0">Ver Detalle</a>
+        <p> <span class="bold">Fecha: </span> <span class="mr-10"><?=date("d-m-Y", strtotime($e['fecha_evento']))?></span> <a href="evento-empleado-<?=$e['id_evento']?>" class="main-btn secondary mt-0">Ver Detalle</a>
         <hr/>
     <?php } ?>
 
