@@ -17,6 +17,8 @@
     <div class="contenido">
         <h3>Seleccione la fecha y franja horaria en que desea su evento</h3>
 
+        <?php if($this->error) $this->mostrarMensajeError('La fecha seleccionada debe ser al menos 3 días mayor a la fecha actual')?>
+
             <form action="" method="POST">
 
             <div>
