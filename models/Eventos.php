@@ -36,7 +36,7 @@ class Eventos extends Model{
 
         $this->db->query(
             "INSERT INTO eventos(descripcion, participantes, duracion, legajo_encargado, id_solicitud)
-            VALUES ('$descripcion', $participantes, $horasAd, $encargado, $id_solicitud)
+            VALUES ('$descripcion', $participantes, 6 + $horasAd, $encargado, $id_solicitud)
             "
         );
 
@@ -50,7 +50,9 @@ class Eventos extends Model{
         if($id_evento < 1) throw new ValidationException('ID de evento no puede ser menor que 1');
 
         $this->db->query(
-            "SELECT * FROM eventos
+            "SELECT * FROM eventos e
+            JOIN solicitudes s
+            ON e.id_solicitud = s.id_solicitud
             WHERE id_evento = $id_evento
             LIMIT 1
             "
@@ -118,7 +120,9 @@ class Eventos extends Model{
         if($legajo < 1) throw new ValidationException('Legajo de encargado no puede ser menor que 1');
 
         $this->db->query(
-            "SELECT * FROM eventos
+            "SELECT * FROM eventos e
+            JOIN solicitudes s
+            ON e.id_solicitud = s.id_solicitud
             WHERE legajo_encargado = $legajo
             AND encargado_confirmado is NULL
             "
@@ -134,7 +138,9 @@ class Eventos extends Model{
         if($legajo < 1) throw new ValidationException('Legajo de encargado no puede ser menor que 1');
 
         $this->db->query(
-            "SELECT * FROM eventos
+            "SELECT * FROM eventos e
+            JOIN solicitudes s
+            ON e.id_solicitud = s.id_solicitud
             WHERE legajo_encargado = $legajo
             AND encargado_confirmado = 'Y'
             "
@@ -182,6 +188,7 @@ class Eventos extends Model{
         $this->db->query(
             "SELECT * FROM mozos_evento me
             JOIN eventos e on e.id_evento = me.id_evento
+            JOIN solicitudes s on s.id_solicitud = e.id_solicitud
             WHERE me.legajo = $legajo
             AND me.confirmado is NULL
             "
@@ -199,6 +206,7 @@ class Eventos extends Model{
         $this->db->query(
             "SELECT * FROM mozos_evento me
             JOIN eventos e on e.id_evento = me.id_evento
+            JOIN solicitudes s on s.id_solicitud = e.id_solicitud
             WHERE me.legajo = $legajo
             AND me.confirmado = 'Y'
             "
@@ -216,6 +224,7 @@ class Eventos extends Model{
         $this->db->query(
             "SELECT * FROM mozos_evento me
             JOIN eventos e on e.id_evento = me.id_evento
+            JOIN solicitudes s on s.id_solicitud = e.id_solicitud
             WHERE me.legajo = $legajo
             AND me.confirmado is NULL
             "
@@ -233,6 +242,7 @@ class Eventos extends Model{
         $this->db->query(
             "SELECT * FROM mozos_evento me
             JOIN eventos e on e.id_evento = me.id_evento
+            JOIN solicitudes s on s.id_solicitud = e.id_solicitud
             WHERE me.legajo = $legajo
             AND me.confirmado = 'Y'
             "
