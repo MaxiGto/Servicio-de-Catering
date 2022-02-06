@@ -26,6 +26,15 @@
         <span class="bold">Participantes:</span> <?=$this->participantes?> personas
         </p>
 
+        <h3>Datos del cliente</h3>
+
+        <p>
+        <span class="bold">Nombre:</span> <?=$this->cliente['nombre'] . " " . $this->cliente['apellido']?> -
+        <span class="bold">Usuario:</span> <?=$this->cliente['usuario']?> -
+        <span class="bold">Email:</span> <?=$this->cliente['email']?> -
+        <span class="bold">Teléfono:</span> <?=$this->cliente['telefono']?>
+        </p>
+
         <h3>Menús solicitados</h3>
 
         <table class="center-table">
@@ -35,16 +44,18 @@
         <?php } ?>
         </table>
 
+        <p><span class="bold">Total menús:</span> $<?=$this->totalMenus?></p>
+
         <h3>Servicios adicionales solicitados</h3>
 
         <?php if($this->tieneServicios){ ?>
             <table class="center-table">
-            <th>Nombre</th><th>Precio unitario</th><th>Total</th>
+            <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
             <?php foreach($this->servicios as $s) { ?>
-            <tr><td><?=$s['nombre']?></td><td>$<?=$s['precio']?></td><td>$<?=$s['total']?></td></tr>
+            <tr><td><?=$this->participantes?></td><td><?=$s['nombre']?></td><td>$<?=$s['precio']?></td><td>$<?=$s['total']?></td></tr>
             <?php } ?>
             </table>
-            <p><span class="bold">Total servicios:</span> $<?=$this->totalServicios?> (<?=$this->participantes?> personas)</p>
+            <p><span class="bold">Total servicios:</span> $<?=$this->totalServicios?></p>
 
         <?php } else {
             $this->mostrarMensaje('No se solicitaron servicios adicionales'); ?>
@@ -55,6 +66,7 @@
             <th>Cantidad</th><th>Nombre</th><th>Precio unitario</th><th>Total</th>
             <tr><td><?=$this->cantidadHoras?></td><td>Horas adicionales</td><td>$<?=$this->precioHora?></td><td>$<?=$this->cantidadHoras * $this->precioHora?></td></tr>
             </table>
+            <p><span class="bold">Total horas adicionales:</span> $<?=$this->cantidadHoras * $this->precioHora?></p>
         <?php } ?>
 
         <h3>Lista de mozos seleccionados</h3>
@@ -70,6 +82,8 @@
         <?php } else { ?>
             <p><span class="bold">Observaciones: </span><?=$this->observaciones?></p>
         <?php } ?>
+
+        <p class="highlight">Total Presupuesto: <span class="bold">$<?= $this->totalMenus + $this->totalServicios + $this->cantidadHoras * $this->precioHora ?></span></p>
 
         <div>
             <a href="presupuestos-aceptados" class="main-btn secondary">Volver</a>

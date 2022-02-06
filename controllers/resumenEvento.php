@@ -5,6 +5,7 @@ require '../fw/AuthAdmin.php';
 
 require '../models/Presupuestos.php';
 require '../models/Empleados.php';
+require '../models/Clientes.php';
 require '../models/Turnos.php';
 
 require '../views/ResumenEvento.php';
@@ -16,6 +17,7 @@ if(count($_POST) > 0){
     $e = new Empleados();
     $p = new Presupuestos();
     $t = new Turnos();
+    $c = new Clientes();
     $v = new ResumenEvento();
 
     if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
@@ -25,6 +27,7 @@ if(count($_POST) > 0){
 
     $encargado = $e->getEmpleadoByLegajo($_SESSION['evento']['encargado']);
     $pys = $p->getSolicitudPresupuesto($_GET['id']);
+    $v->cliente = $c->getClientByID($pys['id_cliente']);
 
     $v->encargado = $encargado['apellido'] . ' ' . $encargado['nombre'];
     $v->direccion = $pys['direccion'];

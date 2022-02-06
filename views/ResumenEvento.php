@@ -3,6 +3,7 @@
 class ResumenEvento extends View{
 
     public $id_presupuesto;
+    public $cliente;
     public $encargado;
     public $direccion;
     public $fecha;
