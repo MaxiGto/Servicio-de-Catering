@@ -3,6 +3,7 @@
 class DatosPresupuesto extends View{
 
     public $presupuesto;
+    public $solicitud;
     public $menus;
     public $cantidadMenus;
     public $totalMenus = 0;

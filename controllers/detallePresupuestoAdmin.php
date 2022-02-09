@@ -4,17 +4,20 @@ require '../fw/fw.php';
 require '../fw/AuthAdmin.php';
 
 require '../models/Presupuestos.php';
+require '../models/Solicitudes.php';
 
 require '../views/DatosPresupuestoAdmin.php';
 
 if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 
 $p = new Presupuestos();
+$s = new Solicitudes();
 $v = new DatosPresupuestoAdmin();
 
 if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
 // if(!$p->verificarPresupuestoPendiente($_GET['id'])) die('Presupuesto no disponible');
 $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
+$v->solicitud = $s->getSolicitudByID($v->presupuesto['id_solicitud']);
 
 $v->menus = $p->getMenusPresupuesto($_GET['id']);
 $v->cantidadMenus = $p->getTotalMenusPresupuesto($_GET['id']);

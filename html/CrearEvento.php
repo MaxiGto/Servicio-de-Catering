@@ -26,7 +26,7 @@
             
             <h3>Información del evento</h3>
             <p>
-                <span class="bold">Fecha:</span> <?=$this->solicitud['fecha_evento']?> -
+                <span class="bold">Fecha:</span> <?=date("d-m-Y", strtotime($this->solicitud['fecha_evento']))?> -
                 <span class="bold">Turno:</span> <?= $this->turno['nombre'] ?> - 
                 <span class="bold">Cantidad de personas:</span> <?= $this->personas['total'] ?> - 
                 <span class="bold">Dirección:</span> <?= $this->solicitud['direccion'] ?> - 

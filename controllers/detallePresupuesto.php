@@ -4,6 +4,7 @@ require '../fw/fw.php';
 require '../fw/AuthCliente.php';
 
 require '../models/Presupuestos.php';
+require '../models/Solicitudes.php';
 
 require '../views/DatosPresupuesto.php';
 
@@ -11,12 +12,14 @@ if(!isset($_GET['id'])) die('No existe ID de presupuesto');
 if(!isset($_SESSION['id_cliente'])) die('No existe ID de cliente');
 
 $p = new Presupuestos();
+$s = new Solicitudes();
 $v = new DatosPresupuesto();
 
 if(!$p->verificarIDPresupuesto($_GET['id'])) die('ID de presupuesto inválido');
 if(!$p->verificarPresupuestoCliente($_GET['id'], $_SESSION['id_cliente'])) die('No tiene permisos para acceder a esta página');
 if(!$p->verificarPresupuestoPendiente($_GET['id'])) die('Presupuesto no disponible');
 $v->presupuesto = $p->getPresupuestoByID($_GET['id']);
+$v->solicitud = $s->getSolicitudByID($v->presupuesto['id_solicitud']);
 
 $v->menus = $p->getMenusPresupuesto($_GET['id']);
 $v->cantidadMenus = $p->getTotalMenusPresupuesto($_GET['id']);

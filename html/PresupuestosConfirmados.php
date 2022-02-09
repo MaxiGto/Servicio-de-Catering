@@ -19,7 +19,7 @@
     
     <?php foreach($this->presupuestos as $p) { ?>
         <hr/>
-        <p> <span class="bold">Fecha:</span> <span class="mr-10"><?= $p['fecha'] ?></span> <a href="crear-evento-<?=$p['id_presupuesto']?>" class="main-btn secondary mt-0">Crear Evento</a></p> 
+        <p> <span class="bold">Fecha:</span> <span class="mr-10"><?= date("d-m-Y", strtotime($p['fecha'])) ?></span> <a href="crear-evento-<?=$p['id_presupuesto']?>" class="main-btn secondary mt-0">Crear Evento</a></p> 
         <hr/>
     <?php } ?>
 

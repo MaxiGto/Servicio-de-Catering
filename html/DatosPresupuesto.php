@@ -15,7 +15,8 @@
     <div class="contenedor center">
         <h1>Datos del presupuesto</h1>
 
-        <p><span class="bold">Fecha de presupuesto: </span> <?=$this->presupuesto['fecha']?></p>
+        <p><span class="bold">Fecha de presupuesto: </span> <?=date("d-m-Y", strtotime($this->presupuesto['fecha']))?></p>
+        <p><span class="bold">Fecha seleccionada para el evento: </span> <?=date("d-m-Y", strtotime($this->solicitud['fecha_evento']))?></p>
 
         <h3>Menús solicitados</h3>
 

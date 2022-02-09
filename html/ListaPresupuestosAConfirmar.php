@@ -21,7 +21,7 @@
         
         <?php foreach($this->presupuestos as $p) { ?>
             <hr/>
-            <p> <span class="bold">Fecha: </span> <span class="mr-10"><?= $p['fecha'] ?></span> <a href="presupuesto-a-confirmar-<?=$p['id_presupuesto']?>" class="main-btn primary mt-0">Ver presupuesto</a> <a href="cliente-<?=$p['id_cliente']?>" class="main-btn secondary mt-0">Ver cliente</a></p>
+            <p> <span class="bold">Fecha: </span> <span class="mr-10"><?= date("d-m-Y", strtotime($p['fecha'])) ?></span> <a href="presupuesto-a-confirmar-<?=$p['id_presupuesto']?>" class="main-btn primary mt-0">Ver presupuesto</a> <a href="cliente-<?=$p['id_cliente']?>" class="main-btn secondary mt-0">Ver cliente</a></p>
             <hr/>
         <?php } ?>
 

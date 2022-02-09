@@ -21,7 +21,7 @@
         
         <?php foreach($this->solicitudes as $s) { ?>
             <hr/>
-            <p> <span class="bold">Fecha: </span> <span class="mr-10"><?= $s['fecha'] ?></span> <a href="solicitud-<?=$s['id_solicitud']?>" class="main-btn primary mt-0">Ver solicitud</a> <a href="cliente-<?=$s['id_cliente']?>" class="main-btn secondary mt-0">Ver cliente</a></p>
+            <p> <span class="bold">Fecha: </span> <span class="mr-10"><?= date("d-m-Y", strtotime($s['fecha'])) ?></span> <a href="solicitud-<?=$s['id_solicitud']?>" class="main-btn primary mt-0">Ver solicitud</a> <a href="cliente-<?=$s['id_cliente']?>" class="main-btn secondary mt-0">Ver cliente</a></p>
             <hr/>
         <?php } ?>
 
