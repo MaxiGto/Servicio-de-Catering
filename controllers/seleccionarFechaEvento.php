@@ -12,6 +12,7 @@ if(isset($_POST['fecha']) && isset($_POST['turno']) && date("d-m-Y", strtotime($
 
     $_SESSION['fecha'] = $_POST['fecha'];
     $_SESSION['turno'] = $_POST['turno'];
+    $_SESSION['direccion'] = $_POST['direccion'];
 
     header('Location: menus-presupuesto');
     exit;

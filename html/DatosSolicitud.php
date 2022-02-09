@@ -15,8 +15,11 @@
     <div class="contenedor center">
     <h1>Datos de la solicitud</h1>
 
-    <p><span class="bold">Fecha de solicitud: </span><?=date("d-m-Y", strtotime($this->solicitud['fecha']))?></p>
-    <p><span class="bold">Fecha seleccionada para el evento: </span><?=date("d-m-Y", strtotime($this->solicitud['fecha_evento']))?></p>
+    <p> 
+        <span class="bold">Fecha de solicitud: </span><?=date("d-m-Y", strtotime($this->solicitud['fecha']))?> -
+        <span class="bold">Fecha seleccionada para el evento: </span><?=date("d-m-Y", strtotime($this->solicitud['fecha_evento']))?> -
+        <span class="bold">Direccion del evento: </span><?=$this->solicitud['direccion']?></p>
+    </p>
     
     <h3>Menús solicitados</h3>
     <table class="center-table">

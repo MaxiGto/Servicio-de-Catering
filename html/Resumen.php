@@ -15,8 +15,10 @@
     <div class="contenedor center">
         <h1>Resumen de presupuesto</h1>
 
-        <p><span class="bold">Fecha:</span> <?= date("d-m-Y", strtotime($this->fechaEvento)) ?></p>
-        <p><span class="bold">Turno:</span> <?= $this->turno . " (" . $this->horario  . ")"?></p>
+        <p> <span class="bold">Fecha:</span> <?= date("d-m-Y", strtotime($this->fechaEvento)) ?> -
+            <span class="bold">Turno:</span> <?= $this->turno . " (" . $this->horario  . ")"?> -
+            <span class="bold">Dirección:</span> <?= $this->direccion ?>
+        </p>
 
         <h3>Menús solicitados</h3>
 

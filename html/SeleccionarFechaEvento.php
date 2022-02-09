@@ -37,6 +37,11 @@
                 </select>
             </div>
 
+            <div>
+                <label for="direccion">Direccion: </label>
+                <input type="text" id="direccion" name="direccion">
+            </div>
+
             <input type="submit" value="Confirmar">
 
         </form>

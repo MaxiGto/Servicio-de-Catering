@@ -25,7 +25,7 @@ if(!$c->verificarIDCliente($_SESSION['id_cliente'])) die('ID de cliente inválid
 if(count($_POST) > 0){
 
     $sct = new Solicitudes();
-    $sct->saveSolicitud($_SESSION['fecha'], $_SESSION['turno'], $_POST['comentario'], $_SESSION['id_cliente'], $_SESSION['menus'], $_SESSION['servicios']);
+    $sct->saveSolicitud($_SESSION['fecha'], $_SESSION['turno'], $_SESSION['direccion'], $_POST['comentario'], $_SESSION['id_cliente'], $_SESSION['menus'], $_SESSION['servicios']);
     $v = new PresupuestoOk();
     $v->render();
 
@@ -41,6 +41,7 @@ if(count($_POST) > 0){
     $v->turno = $turnoDB['nombre'];
     $v->horario = $turnoDB['horario'];
     $v->fechaEvento = $_SESSION['fecha'];
+    $v->direccion = $_SESSION['direccion'];
 
     $v->menus = $m->getMenusEvento($_SESSION['menus']);
 
