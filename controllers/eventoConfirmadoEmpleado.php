@@ -65,7 +65,7 @@ if($v->rol == 'encargado'){
 
 if($v->rol == 'mozo'){
 
-    $v->aCobrar = $c->getMontoPorHoraEncargado()['monto_hora'];
+    $v->aCobrar = $c->getMontoPorHoraMozo()['monto_hora'];
 }
 
 
